@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import MainMenu from '../subpage/MainMenu';
 
-function MainPage(){
-    return(
-        <div>메인<br/>
-        <Link to="/myPage">마이페이지</Link><br/>
-        <Link to="/community">커뮤니티</Link><br/>
-        <Link to="/login">로그인</Link>
-        </div>
-    );
+function MainPage() {
+    return (
+        <div><MainMenu/></div>
+    )
 }
-export default MainPage;
+
+export default MainPage
