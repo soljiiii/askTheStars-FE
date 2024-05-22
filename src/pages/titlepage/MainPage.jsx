@@ -1,9 +1,12 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import MainMenu from '../subpage/MainMenu';
+import {Link} from "react-router-dom";
 
 function MainPage() {
     return (
-        <div><MainMenu/></div>
+        <>
+            <Link to="/mypage">MyPage</Link><br/>
+            <Link to="/login">login</Link><br/>
+            <Link to="/community">community</Link><br/>
+        </>
     )
 }
 

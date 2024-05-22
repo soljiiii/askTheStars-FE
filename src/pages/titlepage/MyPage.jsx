@@ -9,16 +9,13 @@ import MyWriteList from "../subpage/MyWriteList"
 function MyPage() {
     return (
         <>
-            <BrowserRouter>
-            <Routes>
-                <Route path="/myPage" element={<MyMenu/>}/>
-                <Route path="/myPage/memberDelete" element={<MemberDelete/>}/>
-                <Route path="/myPage/memberModify" element={<MemberModify/>}/>
-                <Route path="/myPage/myLikedPostList" element={<MyLikedPostList/>}/>
-                <Route path="/myPage/myReplyList" element={<MyReplyList/>}/>
-                <Route path="/myPage/myWriteList" element={<MyWriteList/>}/>
-            </Routes>
-            </BrowserRouter>
+        <Routes>
+            <Route path="/myPage/memberDelete" element={<MemberDelete/>}/>
+            <Route path="/myPage/memberModify" element={<MemberModify/>}/>
+            <Route path="/myPage/myLikedPostList" element={<MyLikedPostList/>}/>
+            <Route path="/myPage/myReplyList" element={<MyReplyList/>}/>
+            <Route path="/myPage/myWriteList" element={<MyWriteList/>}/>
+        </Routes>
         </>
     )
 }

@@ -5,12 +5,9 @@ import MemberJoin from "../subpage/MemberJoin"
 function Login() {
     return (
         <>
-            <BrowserRouter>
-            <Routes>
-                <Route path="/login" element={<LoginPage/>}/>
-                <Route path="/login/memberJoin" element={<MemberJoin/>}/>
-            </Routes>
-            </BrowserRouter>
+        <Routes>
+            <Route path="/login/memberJoin" element={<MemberJoin/>}/>
+        </Routes>
         </>
     )
 }
