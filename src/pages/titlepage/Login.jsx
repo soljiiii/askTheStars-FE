@@ -1,13 +1,9 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import LoginPage from "../subpage/LoginPage"
-import MemberJoin from "../subpage/MemberJoin"
+import {Link} from "react-router-dom";
 
 function Login() {
     return (
         <>
-        <Routes>
-            <Route path="/login/memberJoin" element={<MemberJoin/>}/>
-        </Routes>
+            <Link to="/login/memberjoin">회원가입</Link><br/>
         </>
     )
 }

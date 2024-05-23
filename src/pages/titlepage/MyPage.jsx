@@ -1,21 +1,14 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import MyMenu from "../subpage/MyMenu"
-import MemberDelete from "../subpage/MemberDelete"
-import MemberModify from "../subpage/MemberModify"
-import MyLikedPostList from "../subpage/MyLikedPostList"
-import MyReplyList from "../subpage/MyReplyList"
-import MyWriteList from "../subpage/MyWriteList"
+import {Link} from "react-router-dom";
+
 
 function MyPage() {
     return (
         <>
-        <Routes>
-            <Route path="/myPage/memberDelete" element={<MemberDelete/>}/>
-            <Route path="/myPage/memberModify" element={<MemberModify/>}/>
-            <Route path="/myPage/myLikedPostList" element={<MyLikedPostList/>}/>
-            <Route path="/myPage/myReplyList" element={<MyReplyList/>}/>
-            <Route path="/myPage/myWriteList" element={<MyWriteList/>}/>
-        </Routes>
+            <Link to="/mypage/memberdelete">회원삭제</Link><br/>
+            <Link to="/mypage/membermodify">회원수정</Link><br/>
+            <Link to="/mypage/mylikedpostlist">좋아요누른글</Link><br/>
+            <Link to="/mypage/myreplylist">댓글</Link><br/>
+            <Link to="/mypage/mywritelist">글목록</Link><br/>
         </>
     )
 }

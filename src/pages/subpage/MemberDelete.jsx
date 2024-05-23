@@ -1,7 +1,7 @@
 function MemberDelete(){
     return(
         <>
-            멤버 지우기
+            <div>멤버지우기</div>
         </>
     )
 }

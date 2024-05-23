@@ -1,16 +1,10 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import CommunityPage from "../subpage/CommunityPage"
-import Write from "../subpage/Write"
-import PostDetail from "../subpage/PostDetail"
-
+import {Link} from "react-router-dom";
 
 function Community() {
     return (
         <>
-        <Routes>
-            <Route path="/community/write" element={<Write/>}/>
-            <Route path="/community/postdetail" element={<PostDetail/>}/>
-        </Routes>
+            <Link to="/community/write">글쓰기y</Link><br/>
+            <Link to="/community/postdetail">글상세보기</Link><br/>
         </>
     )
 }

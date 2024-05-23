@@ -1,8 +1,8 @@
-function myWriteList(){
+function MyWriteList(){
     return(
         <>
             글리스트
         </>
     )
 }
-export default myWriteList
+export default MyWriteList
