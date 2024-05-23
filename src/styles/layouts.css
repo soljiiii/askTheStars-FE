@@ -1,0 +1,34 @@
+.headerBox {
+    padding-top: 1px;
+    width: 980px;
+    height: 220px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    border-bottom: solid 3px #34343499;
+}
+.logoImage, .headerLogo{
+    width: 180px;
+    height: 150px;
+    left: 0px;
+}
+.headerLinkBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerLogin {
+    padding-right: 20px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.headerLoginLink {
+    text-decoration: none;
+    color: white;
+}
+.headerMypage, .menuImage  {
+    width: 30px;
+    height: 30px;
+}
