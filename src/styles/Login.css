@@ -1,0 +1,210 @@
+/*로그인화면*/
+.allLoginBox {
+    margin: auto;
+    width: 400px;
+    height: 700px;
+}
+.loginTitle {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+    font-size: 30px;
+    font-weight: 600;
+}
+.loginBox {
+    width: 400px;
+    height: 300px;
+    margin-top: 50px;
+    border: 3px solid rgb(198, 198, 198);
+    border-radius: 20px;
+}
+.loginIdBox {
+    width: 400px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+}
+.loginId {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #3b3b3b99;
+    border-radius: 20px;
+    background-color: #3b3b3b99;
+    position: absolute;
+    color: white;
+    font-size: 16px;
+    padding-left: 30px;
+}
+.loginPwBox{
+    width: 400px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.loginPw {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #3b3b3b99;
+    border-radius: 20px;
+    background-color: #3b3b3b99;
+    position: absolute;
+    color: white;
+    font-size: 16px;
+    padding-left: 30px;
+}
+.loginButtonBox {
+    width: 400px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+.loginButton {
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3c3c3c;
+}
+.loginButton:hover{
+    background-color: #3b3b3b99;
+}
+.joinButton{
+    width: 120px;
+    height: 40px;
+    margin: 50px 140px auto 140px;
+    cursor: pointer;
+    position: absolute;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3c3c3c;
+}
+.joinButton:hover{
+    background-color: #3b3b3b99;
+}
+.joinButtonLink {
+    width: 100px;
+    height: 40px;
+    position: relative;
+}
+
+/*회원가입 화면*/
+.allJoinBox {
+    width: 350px;
+    height: 700px;
+    margin: 70px auto auto auto;
+}
+.joinSpan {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 80px;
+    margin-bottom: 60px;
+    font-size: 20px;
+}
+.idNoBox{
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.idNoSpan{
+    color: white;
+    width: 80px;
+    text-align: center;
+    font-size: 14px;
+}
+.idNo1, .idNo2 {
+    width: 90px;
+    height: 30px;
+    border: 2px solid #323232;
+    border-radius: 15px;
+    background-color: #32323272;
+    color: white;
+    padding-left: 20px;
+    font-size: 16px;
+}
+.phoneBox{
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.phoneSpan{
+    color: white;
+    width: 80px;
+    text-align: center;
+    font-size: 15px;
+}
+.phone1, .phone2, .phone3 {
+    width: 50px;
+    height: 30px;
+    border: 2px solid #323232;
+    border-radius: 15px;
+    background-color: #32323272;
+    color: white;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.emailBox{
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: white;
+}
+.emailSpan{
+    color: white;
+    width: 80px;
+    text-align: center;
+    font-size: 15px;
+}
+.email1, .email2 {
+    width: 90px;
+    height: 30px;
+    border: 2px solid #323232;
+    border-radius: 15px;
+    background-color: #32323272;
+    color: white;
+    padding-left: 20px;
+    font-size: 16px;
+}
+.joinSubmitButtonBox {
+    width: 400px;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.joinSubmitButton {
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3c3c3c;
+    border: none;
+}
+.joinSubmitButton:hover{
+    background-color: #3b3b3b99;
+    border: 1px solid white;
+    cursor: pointer;
+}

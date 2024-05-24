@@ -12,6 +12,7 @@ import MemberModify from './pages/subpage/MemberModify';
 import MyLikedPostList from './pages/subpage/MyLikedPostList';
 import MyReplyList from './pages/subpage/MyReplyList';
 import MyWriteList from './pages/subpage/MyWriteList';
+import MyAlarm from './pages/subpage/MyAlarm';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/mypage/mylikedpostlist" element={<MyLikedPostList/>}/>
           <Route path="/mypage/myreplylist" element={<MyReplyList/>}/>
           <Route path="/mypage/mywritelist" element={<MyWriteList/>}/>
+          <Route path="/mypage/alarm" element={<MyAlarm/>}/>
       </Routes>
       </BrowserRouter>
     </>

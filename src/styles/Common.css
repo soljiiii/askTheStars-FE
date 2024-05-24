@@ -1,0 +1,56 @@
+/*join input*/
+.joinInput {
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.joinMenu{
+    color: white;
+    width: 80px;
+    text-align: center;
+}
+.inputBox {
+    width: 230px;
+    height: 30px;
+    border: 2px solid #32323272;
+    border-radius: 15px;
+    background-color: #32323272;
+    color: white;
+    padding-left: 30px;
+    font-size: 16px;
+}
+
+/*vertify*/
+.vertifyBox{
+    width: 200px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.vertifyButton {
+    border-radius: 15px;
+    border: 1px solid white;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 500;
+    color: #3c3c3c;
+}
+.vertifyButton:hover{
+    background-color: #3b3b3b99;
+}
+.vertifyResult {
+    width: 150px;
+}
+.vertifyDisable {
+    color: #6e2929;
+    font-weight: 500;
+}
+.vertifyAble {
+    color: #375e8a;
+    font-weight: 500;
+}
