@@ -4,6 +4,14 @@ import "../../styles/Login.css";
 import Vertify from "../../component/login/Vertify";
 
 function MemberJoin(){
+    
+    function handleJoinSumit(){
+        alert("가입");
+    }
+    function handleCheck(){
+        alert("체크");
+    }
+
     return(
         <>
             <Header/>
@@ -16,7 +24,7 @@ function MemberJoin(){
                         <JoinInput
                             menu="ID"
                         />
-                        <Vertify/>
+                        <Vertify vertifyEvent={handleCheck}/>
                     </div>
                     <div className="pwInputBox">
                         <JoinInput
@@ -32,7 +40,7 @@ function MemberJoin(){
                         <JoinInput 
                             menu="NICK"
                         />
-                        <Vertify/>
+                        <Vertify vertifyEvent={handleCheck}/>
                     </div>
                     <div className="idNoBox">
                         <span className="idNoSpan">주민번호</span>
@@ -52,12 +60,12 @@ function MemberJoin(){
                     </div>
                 </div>
                 <div className="joinSubmitButtonBox">
-                    <button className="joinSubmitButton">
+                    <button className="joinSubmitButton" onClick={handleJoinSumit}>
                         별박사 되기
                     </button>
                 </div>
             </div>
         </>
-    )
+    );
 }
 export default MemberJoin
