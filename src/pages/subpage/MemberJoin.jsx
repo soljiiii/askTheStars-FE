@@ -23,37 +23,48 @@ function MemberJoin(){
 
     //input 작성 onchange
     function handleIdChange(newValue){
+        if(newValue.length<=20)
         setUserId(newValue);
     }
     function handleNickChange(newValue){
+        if(newValue.length<=10)
         setUserNick(newValue);
     }
     function handlePwChange(newValue){
+        if(newValue.length<=20)
         setUserPw(newValue);
     }
     function handleNmChange(newValue){
+        if(newValue.length<=20)
         setUserNm(newValue);
     }
 
     function handleIdNo1Change(e){
+        if(e.target.value.length<=6)
         setIdentityNo1(e.target.value);
     }
     function handleIdNo2Change(e){
+        if(e.target.value.length<=7)
         setIdentityNo2(e.target.value);
     }
     function handlePhone1Change(e){
+        if(e.target.value.length<=3)
         setPhone1(e.target.value);
     }
     function handlePhone2Change(e){
+        if(e.target.value.length<=4)
         setPhone2(e.target.value);
     }
     function handlePhone3Change(e){
+        if(e.target.value.length<=4)
         setPhone3(e.target.value);
     }
     function handleEmail1Change(e){
+        if(e.target.value.length<=20)
         setEmail1(e.target.value);
     }
     function handleEmail2Change(e){
+        if(e.target.value.length<=20)
         setEmail2(e.target.value);
     }
     
@@ -96,30 +107,76 @@ function MemberJoin(){
         })
     }
     
-    //회원가입 버튼 클릭
-    //중복 아이디, 닉네임은 사용 못하게 *
-    //아이디, pw, 이름, 닉네임 20자 이내
-    //주민번호 숫자만 + 6자리, 7자리
-    //휴대폰번호 숫자만 + 3자리, 4자리, 4자리
-    //이메일 30자이내
-    function handleJoinSumit(){
-        const data = {
-            memberId :userId,
-            memberPw :userPw,
-            memberNm :userNm,
-            memberNickNm :userNick,
-            phone1 :phone1,
-            phone2 :phone2,
-            phone3 :phone3,
-            identityNo1 :identityNo1,
-            identityNo2 :identityNo2,
-            email1 :email1,
-            email2 :email2
-        }
-        console.log(data);
-        axios.post(`http://localhost:80/memberJoin`,{param:data})
-        .then(response =>{
+    //회원가입버튼 클릭
 
+    //유효성 검사
+    function validateFunc(data){
+
+        //아이디*닉네임 유효성 검사
+        if(userId===""){
+            return"ID를 입력해주세요";
+        }
+        if(userNick===""){
+            return"닉네임을 입력해주세요";
+        }
+        if(idExistState==1||nickExistState==1){
+            return "이미 사용중이에요! 다시 입력해주세요!";
+        }
+        if(idExistState==3||nickExistState==3){
+            return "중복검사를 진행해주세요!";
+        }
+
+        //비밀번호
+        if(userPw===""){
+            return "비밀번호를 입력해주세요";
+        }
+
+        //이름
+        if(userNm===""){
+            return "이름을 입력해주세요";
+        }
+
+        //주민번호
+        if (identityNo1.length !== 6 || identityNo2.length !== 7) {
+            return "주민번호 자릿수를 확인해주세요!";
+        }
+        if (identityNo1===""||identityNo2==""){
+            return "주민번호를 입력해주세요";
+        }
+
+        //핸드폰번호
+        if (phone1.length !== 3 || phone2.length !== 4 || phone3.length !== 4) {
+            return "휴대전화 자릿수를 확인해주세요!";
+        }
+        if (phone1===""||phone2===""||phone3===""){
+            return "휴대전화 번호를 입력해주세요"
+        }
+
+        //이메일
+        if (email1===""||email2===""){
+            return "이메일을 입력해주세요"
+        }
+
+        return null;
+
+    }
+
+    //회원가입 버튼 클릭
+    function handleJoinSumit(){
+        const errMsg = validateFunc(data);
+        
+        if(errMsg) {
+            alert(errMsg);
+            return;
+        }
+
+        console.log(data);
+        axios.post(`http://localhost:80/memberJoin`,data)
+        .then(response =>{
+            console.log(response);
+        })
+        .catch(error=>{
+            console.error(error);
         })
     }
 
