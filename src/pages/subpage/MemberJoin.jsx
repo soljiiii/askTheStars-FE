@@ -163,6 +163,18 @@ function MemberJoin(){
 
     //회원가입 버튼 클릭
     function handleJoinSumit(){
+        const data = {
+            memberId: userId,
+            memberNickNm: userNick,
+            memberPw: userPw,
+            memberNm: userNm,
+            identityNo: identityNo1 + identityNo2,
+            phone1: phone1,
+            phone2: phone2,
+            phone3: phone3,
+            email1: email1,
+            email2: email2
+        }
         const errMsg = validateFunc(data);
         
         if(errMsg) {

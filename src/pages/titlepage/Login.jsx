@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import Header from "../../layouts/Header";
 import "../../styles/Login.css"
 import { useState } from "react";
+import axios from "axios";
 
 function Login() {
 const [loginId, setLoginId] = useState("");
@@ -25,9 +26,12 @@ function handleLogin(){
             memberId : loginId,
             memberPw : loginPw
         }
-        axios.post(`http://localhost:80/login`,data)
+        axios.post(`http://localhost:80/login`,data, {withCredentials:true})
         .then(response =>{
-
+            console.log(response.data);
+        })
+        .catch(error =>{
+            console.error("there was an error!", error);
         })
     }
 }
