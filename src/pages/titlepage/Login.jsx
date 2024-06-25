@@ -3,10 +3,12 @@ import Header from "../../layouts/Header";
 import "../../styles/Login.css"
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 const [loginId, setLoginId] = useState("");
 const [loginPw, setLoginPw] = useState("");
+const navigate = useNavigate();
 
 function handleLoginIdChange(e){
     if(e.target.value.length<=20)
@@ -29,6 +31,7 @@ function handleLogin(){
         axios.post(`http://localhost:80/login`,data, {withCredentials:true})
         .then(response =>{
             console.log(response.data);
+            navigate(`/`);
         })
         .catch(error =>{
             console.error("there was an error!", error);

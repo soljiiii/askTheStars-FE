@@ -1,7 +1,39 @@
 import {Link} from "react-router-dom";
 import "../styles/layouts.css"
+import { useEffect } from "react";
+import { useState } from "react";
+import { getCookie } from "../util/util";
+import axios from "axios";
 
 function Header(){
+
+    const [accessToken, setAccessToken] = useState(null);
+
+    useEffect(()=>{
+        const cookieValue = getCookie("accessToken");
+        console.log("쿠키",cookieValue)
+        if(cookieValue){
+            setAccessToken(cookieValue);
+        }
+        else{
+            setAccessToken(null);
+        }
+    },[])
+
+    function handleLogOut(){
+        axios.post(`http://localhost:80/logout`,{},{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+        .then(response=>{
+            console.log("Logout Successfully");
+        })
+        .catch(error=>{
+            console.error("logout failed", error)
+        })
+        console.log(accessToken)
+    }
 
     return(
         <div className="headerBox">
@@ -10,7 +42,10 @@ function Header(){
             </div>
             <div className="headerLinkBox">
                 <div className="headerLogin">
-                    <Link to="/login" className="headerLoginLink">LOGIN</Link><br/>
+                    {accessToken?
+                    (<button className="logoutButton" onClick={handleLogOut}>LOGOUT</button>)
+                    :(<Link to="/login" className="headerLoginLink">LOGIN</Link>)}
+                    
                 </div>
                 <div className="headerMypage">
                     <Link to="/mypage"><img className="menuImage" src="/menu.png"/></Link><br/>

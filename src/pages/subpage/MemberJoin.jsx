@@ -4,6 +4,7 @@ import "../../styles/Login.css";
 import Vertify from "../../component/login/Vertify";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function MemberJoin(){
     const[userId, setUserId] = useState("");
@@ -20,6 +21,8 @@ function MemberJoin(){
     const[identityNo2,setIdentityNo2] = useState("");
     const[email1,setEmail1] = useState("");
     const[email2,setEmail2] = useState("");
+
+    const navigate = useNavigate();
 
     //input 작성 onchange
     function handleIdChange(newValue){
@@ -186,6 +189,7 @@ function MemberJoin(){
         axios.post(`http://localhost:80/memberJoin`,data)
         .then(response =>{
             console.log(response);
+            navigate(`/login`);
         })
         .catch(error=>{
             console.error(error);
