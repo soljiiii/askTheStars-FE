@@ -1,0 +1,107 @@
+/*글쓰기*/
+.postContainer{
+    width: 700px;
+    height: 850px;
+    margin: 120px auto;
+    border: 1px solid rgb(124, 124, 124);
+    background-color: #7a79792f;
+    border-radius: 15px;
+    display: flex;
+
+}
+.subjectContainer{
+    width: 700px;
+    height: 100px;
+    margin: 0px  auto ;
+    position: absolute;
+
+}
+.subjectInput{
+    width: 570px;
+    height: 50px;
+    margin: 30px 50px auto 50px;
+    border: none;
+    border-radius: 15px;
+    padding-left: 30px;
+}
+input:focus{
+    outline: none;
+}
+
+.contentContainer{
+    width: 700px;
+    height: 620px;
+    position: absolute;
+    margin: 100px 0px auto 0px;
+}
+.contentInput{
+    width: 540px;
+    height: 540px;
+    border: none;
+    background-color: rgb(154, 146, 146);
+    margin: 10px 50px auto 50px;
+    border-radius: 15px;
+    position: absolute;
+    padding:30px;
+    resize: none;
+}
+textarea:focus{
+    outline:none;
+}
+.submitContainer{
+    width: 700px;
+    height: 100px;
+    margin: 750px auto auto 0px;
+}
+.postSubmitButton{
+    width: 150px;
+    height: 50px;
+    margin: 10px 275px auto 275px;
+    border-radius: 20px;
+    border: none;
+    background-color: #abaaaa;
+    font-size: 18px;
+    font-weight: 600;
+}
+.postSubmitButton:hover{
+    background-color: #3b3b3b99;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+/*글 목록*/
+.communityContainer{
+    border: 1px solid white;
+    width: 900px;
+    height: 1200px;
+    margin: 20px 40px 100px 40px;
+}
+.communityButtonContainer{
+    border: 1px solid white;
+    width: 900px;
+    height: 100px;
+}
+.writeButton{
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    margin: 50px 50px auto 750px;
+    background-color: #abaaaa;
+    font-weight: 600;
+}
+.writeButton:hover{
+    background-color: #3b3b3b99;
+    border: 1px solid white;
+    cursor: pointer;
+}
+.postList{
+    border: 1px solid white;
+    width: 900px;
+    height: 1000px;
+}
+.pagingBox{
+    border: 1px solid white;
+    width: 900px;
+    height: 100px;
+}

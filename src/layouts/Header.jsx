@@ -11,7 +11,6 @@ function Header(){
 
     useEffect(()=>{
         const cookieValue = getCookie("accessToken");
-        console.log("쿠키",cookieValue)
         if(cookieValue){
             setAccessToken(cookieValue);
         }
@@ -24,15 +23,16 @@ function Header(){
         axios.post(`http://localhost:80/logout`,{},{
             headers:{
                 Authorization: `Bearer ${accessToken}`
-            }
+            },
+            withCredentials: true
         })
         .then(response=>{
             console.log("Logout Successfully");
+            window.location.reload();
         })
         .catch(error=>{
             console.error("logout failed", error)
         })
-        console.log(accessToken)
     }
 
     return(

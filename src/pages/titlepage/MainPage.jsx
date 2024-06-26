@@ -27,7 +27,7 @@ function MainPage() {
                             <img src="/setting.png" className="settingIcon"/>
                         </Link><br/>
                         <Link to="/mypage/alarm" className="messageIconLink">
-                            <img src="/message.png" className="messageIcon"/>
+                            <div className="messageIcon">내 소식</div>
                         </Link><br/>
                     </div>
                     <div className="chattinButtonBox">
