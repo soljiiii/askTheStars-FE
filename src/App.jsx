@@ -21,9 +21,9 @@ function App() {
       <Routes>
           <Route path="/" element={<MainPage/>}/>
 
-          <Route path="/community/*" element={<Community/>}/>
+          <Route path="/community/:page" element={<Community/>}/>
           <Route path="/community/write" element={<Write/>}/>
-          <Route path="/community/postdetail" element={<PostDetail/>}/>
+          <Route path="/community/postdetail/:postNo" element={<PostDetail/>}/>
 
           <Route path="/login/*" element={<Login/>}/>
           <Route path="/login/memberJoin" element={<MemberJoin/>}/>

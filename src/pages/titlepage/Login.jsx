@@ -31,6 +31,10 @@ function handleLogin(){
         axios.post(`http://localhost:80/login`,data, {withCredentials:true})
         .then(response =>{
             console.log(response.data);
+            if(response.data==="Invalid credentials"){
+                alert("로그인 정보가 일치하지 않습니다");
+            }
+            else
             navigate(`/`);
         })
         .catch(error =>{

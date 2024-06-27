@@ -35,16 +35,26 @@ function Write(){
             title:subject,
             postContent: content
         }
-        axios.post(`http://localhost:80/postWrite`,data,{
-            headers:{
-                Authorization: `Bearer ${accessToken}`
-            },
-            withCredential:true
-        })
-        .then(response=>{
-            console.log("작성완료");
-            navigate(`/community`)
-        })
+        if(accessToken!==null){
+            if(subject===""){
+                alert("제목을 입력해주세요!")
+            }
+            else{
+                axios.post(`http://localhost:80/postWrite`,data,{
+                    headers:{
+                        Authorization: `Bearer ${accessToken}`
+                    },
+                    withCredential:true
+                })
+                .then(response=>{
+                    console.log("작성완료");
+                    navigate(`/community/1`)
+                })
+            }
+        }
+        else{
+            alert("로그인 후 이용해주세요")
+        }
     }
     return(
         <>

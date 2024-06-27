@@ -71,13 +71,11 @@ textarea:focus{
 
 /*글 목록*/
 .communityContainer{
-    border: 1px solid white;
     width: 900px;
-    height: 1200px;
+    height: 1100px;
     margin: 20px 40px 100px 40px;
 }
 .communityButtonContainer{
-    border: 1px solid white;
     width: 900px;
     height: 100px;
 }
@@ -86,7 +84,7 @@ textarea:focus{
     border-radius: 10px;
     width: 100px;
     height: 40px;
-    margin: 50px 50px auto 750px;
+    margin: 40px 50px auto 750px;
     background-color: #abaaaa;
     font-weight: 600;
 }
@@ -96,12 +94,200 @@ textarea:focus{
     cursor: pointer;
 }
 .postList{
-    border: 1px solid white;
     width: 900px;
-    height: 1000px;
+    height: 900px;
+    margin-top: 30px;
 }
 .pagingBox{
-    border: 1px solid white;
     width: 900px;
     height: 100px;
+}
+
+/*글 컴포넌트*/
+.postComponentContainer{
+    width: 900px;
+    height: 40px;
+    display: flex;
+    margin-bottom: 8px;
+}
+.postNoBox{
+    width: 50px;
+    height: 40px;
+    border: 1px solid #dbdada;
+    background-color: #dbdada;
+    border-radius: 15px;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.postTitleBox{
+    width: 580px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 20px;
+}
+.postTitleLink{
+    text-decoration: none;
+    color: white;
+}
+.postDateBox{
+    width: 100px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.postVwCntBox{
+    width: 50px;
+    height: 40px;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+.postWriterBox{
+    width: 100px;
+    height: 40px;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+/*페이징*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #545353;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+ul.pagination li
+
+ul.pagination li:first-child{
+    border-radius: 5px 0 0 5px;
+}
+
+ul.pagination li:last-child{
+    border-radius: 0 5px 5px 0;
+}
+
+ul.pagination li a {
+    text-decoration: none;
+    color: #f9fafb;
+    font-size: 1rem;
+}
+
+ul.pagination li.active a {
+    color: rgb(255, 255, 255);
+}
+
+ul.pagination li.active {
+    background-color: #9a9a9a;
+}
+
+ul.pagination li a:hover,
+ul.pagination li a.active {
+    color: rgb(117, 117, 117);
+    font-weight: 500;
+}
+
+.page-selection {
+    width: 48px;
+    height: 30px;
+    color: #919191;
+}
+
+/*상세페이지*/
+.postDetailContainer{
+    width: 900px;
+    min-height: 1235px;
+    margin: 70px auto 150px auto;
+    border: 1px solid white;
+    color: white;
+}
+.postDetailBox{
+    width: 900px;
+    height: 1000px;
+    border: 1px solid red;
+}
+.postDetailTitleBox{
+    width: 800px;
+    height: 50px;
+    margin: 20px 50px auto 50px;
+    border: 1px solid white;
+}
+.postDetailStateBox{
+    width: 800px;
+    height: 50px;
+    border: 1px solid white;
+    margin: 0px 50px auto 50px;
+    display: flex;
+}
+.postDetailVwCntBox{
+
+}
+.postDetailDateBox{
+
+}
+.postDetailIdBox{
+
+}
+.postDetailContentBox{
+    width: 800px;
+    height: 875px;
+    border: 1px solid blue;
+    margin: 0px 50px auto 50px;
+}
+.contentBox{
+    width: 800px;
+    height: 725px;
+    border: 1px solid white;
+
+}
+.likeButtonBox{
+    width: 800px;
+    height: 150px;
+    border: 1px solid white;
+}
+.writeReplyBox{
+    width: 800px;
+    height: 150px;
+    border: 1px solid red;
+    margin: 0px 50px auto 50px;
+}
+.replyBox{
+    width: 800px;
+    min-height: 80px;
+    border: 1px solid blue;
+    margin: 0px 50px auto 50px;
 }

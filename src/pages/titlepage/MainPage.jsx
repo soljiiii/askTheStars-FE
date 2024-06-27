@@ -17,7 +17,7 @@ function MainPage() {
                             
                         </div>
                         <button className="morePostButton">
-                            <Link to="/community" className="morePostButtonLink">▶ 전체보기</Link><br/>
+                            <Link to="/community/1" className="morePostButtonLink">▶ 전체보기</Link><br/>
                         </button>
                     </div>
                 </div>
