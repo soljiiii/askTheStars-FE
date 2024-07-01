@@ -232,19 +232,20 @@ ul.pagination li a.active {
     width: 900px;
     min-height: 1235px;
     margin: 70px auto 150px auto;
-    border: 1px solid white;
+    border: none;
     color: white;
 }
 .postDetailBox{
     width: 900px;
     height: 1000px;
-    border: 1px solid red;
+    border: none;
 }
 .postDetailTitleBox{
     width: 770px;
     height: 50px;
     margin: 20px 50px auto 50px;
     border: 1px solid white;
+    border-radius: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -253,28 +254,39 @@ ul.pagination li a.active {
 .postDetailStateBox{
     width: 800px;
     height: 50px;
-    border: 1px solid white;
+    border: none;
     margin: 0px 50px auto 50px;
     display: flex;
     justify-content: flex-end;
 }
 .postDetailVwCntBox{
     width: 50px;
-    height: 50px;
+    height: 40px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .postDetailDateBox{
     width: 100px;
-    height: 50px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .postDetailIdBox{
     width: 100px;
-    height: 50px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,30 +294,169 @@ ul.pagination li a.active {
 .postDetailContentBox{
     width: 800px;
     height: 875px;
-    border: 1px solid blue;
+    border: 1px solid none;
     margin: 0px 50px auto 50px;
 }
 .contentBox{
     width: 770px;
     height: 695px;
     border: 1px solid white;
+    border-radius: 20px;
     padding-left: 30px;
     padding-top: 30px;
 }
 .likeButtonBox{
     width: 800px;
     height: 150px;
-    border: 1px solid white;
+    margin-top: 5px;
+    border: none;
+    display: flex;
+}
+.likeStubBox{
+    width: 440px;
+    height: 150px;
+    display: block;
+}
+.postStubBox{
+    width: 360px;
+    height: 150px;
+    display: flex;
+}
+.likeButton{
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    border: none;
+    background-color: black;
+    margin: 20px auto 0px 360px;
+}
+.likeButton:hover{
+    cursor: pointer;
+    background-color: #545353;
+    border-radius: 100px;
+}
+.likeCnt{
+    width: 80px;
+    height: 20px;
+    margin: 90px auto auto 360px;
+}
+.postModifyButton{
+    width: 100px;
+    height: 40px;
+    margin:  70px auto auto 120px;
+    border-radius: 15px;
+    background-color: #d7d7d7;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.postDeleteButton{
+    width: 100px;
+    height: 40px;
+    margin: 70px 20px auto auto;
+    border-radius: 15px;
+    background-color: #d7d7d7;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.postModifyButton:hover, .postDeleteButton:hover{
+    background-color: #545353;
+    cursor: pointer;
 }
 .writeReplyBox{
     width: 800px;
     height: 150px;
-    border: 1px solid red;
-    margin: 0px 50px auto 50px;
+    border: none;
+    margin: 0px 50px 50px 50px;
+    display: flex;
+}
+.replyInput{
+    width: 640px;
+    height: 90px;
+    background-color: #dfdfdfda;
+    resize: none;
+    margin-top: 18px;
+    margin-left: 5px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 16px;
+}
+.replySubmitButton{
+    width: 100px;
+    height: 40px;
+    margin-top: 107px;
+    margin-left: 8px;
+    border-radius: 15px;
+    background-color: #d7d7d7;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.replySubmitButton:hover{
+    background-color: #545353;
+    cursor: pointer;
 }
 .replyBox{
     width: 800px;
-    min-height: 80px;
     border: 1px solid blue;
-    margin: 0px 50px auto 50px;
+    margin: 0px 50px 500px 50px;
+}
+
+/*댓글박스*/
+.replyContainer{
+    width: 800px;
+    min-height: 120px;
+    display: flex;
+    margin-bottom: 20px;
+}
+.replyInfoBox{
+    width: 120px;
+    display: block;
+}
+.replyIdBox{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    margin: 5px 5px auto auto;
+}
+.replyDateBox{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    margin: 5px 5px auto auto;
+}
+.replyContentBox{
+    width: 440px;
+    min-height: 80px;
+    padding: 20px;
+    border: 1px solid white;
+}
+.replyButtonBox{
+    width: 120px;
+    display: block;
+}
+.replyModifyButton{
+    width: 100px;
+    height: 30px;
+    margin: 40px auto auto 50px;
+    border-radius: 20px;
+    border: none;
+}
+.replyDeleteButton{
+    width: 100px;
+    height: 30px;
+    margin: 10px auto auto 50px;
+    border-radius: 20px;
+    border: none;
+}
+.replyModifyButton:hover, .replyDeleteButton:hover{
+    background-color: #545353;
+    cursor: pointer;
 }

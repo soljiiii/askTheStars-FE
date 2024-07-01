@@ -9,7 +9,7 @@ function Write(){
     const [subject, setSubject] = useState("");
     const [content, setContent] = useState("");
     const navigate = useNavigate();
-    const [accessToken, setAccessToken] =useState("");
+    const [accessToken, setAccessToken] =useState(null);
 
     function handleSubject(e){
         if(e.target.value.length<=150)

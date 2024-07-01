@@ -1,15 +1,29 @@
 import Header from "../../layouts/Header"
-import replyComponent from "../../component/community/replyComponent"
+import ReplyComponent from "../../component/community/ReplyComponent"
 import "../../styles/Community.css"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { formatDate } from "../../util/util";
 import axios from "axios"
+import { getCookie } from "../../util/util"
 
 function PostDetail(){
 
     const {postNo} = useParams();
     const [detail, setDetail] = useState([]);
+    const [replyList, setReplyList] = useState([]);
+    const [replyContent, setReplyContent] = useState("");
+    const [accessToken, setAccessToken] =useState(null);
+
+    useEffect(()=>{
+        const cookieValue = getCookie("accessToken");
+        if(cookieValue){
+            setAccessToken(cookieValue);
+        }
+        else{
+            setAccessToken(null);
+        }
+    },[])
 
     //렌더링할때 글 불러오기
     useEffect(()=>{
@@ -20,6 +34,15 @@ function PostDetail(){
         })
     },[])
 
+    //댓글 불러오기
+    useEffect(()=>{
+        axios.get(`http://localhost:80/replyList/${postNo}`)
+        .then(response=>{
+            console.log(response.data)
+            setReplyList(response.data);
+        })
+    },[])
+
     function postDate(dateString){
         const date = new Date(dateString);
         const year = date.getFullYear;
@@ -27,6 +50,45 @@ function PostDetail(){
         const day = String(date.getDate()).padStart(2,'0');
         
         return `${year}-${month}-${day}`;
+    }
+
+    //댓글 쓰기 onChange
+    function handleReplyContentChange(e){
+        if(e.target.value.length<=300)
+            setReplyContent(e.target.value);
+    }
+
+    //댓글 쓰기
+    function handleSubmitReply(){
+        if(accessToken===null){
+            alert("로그인 후 이용해주세요!")
+        }
+        else{
+            const data = {
+                postNo:postNo,
+                replyContent:replyContent
+            }
+            axios.post(`http://localhost:80/writeReply`,data,{
+                headers:{
+                    Authorization: `Bearer ${accessToken}`
+                },
+                withCredential:true
+            })
+            .then(response=>{
+                console.log("작성완료")
+                window.location.reload();
+            })
+        }
+    }
+
+    //글 수정
+    function handleModifyPost(){
+
+    }
+
+    //글 삭제
+    function handleDeletePost(){
+
     }
 
     return(
@@ -47,15 +109,32 @@ function PostDetail(){
                             {detail.postContent}
                         </div>
                         <div className="likeButtonBox">
-                            <button className="likeButton">좋아요</button>
+                            <div className="likeStubBox">
+                                <button className="likeButton">👍</button>
+                                <span className="likeCnt">Liked : {detail.likedCnt}</span>
+                            </div>
+                            <div className="postStubBox">
+                                <button className="postModifyButton" onClick={handleModifyPost}>글수정</button>
+                                <button className="postDeleteButton" onClick={handleDeletePost}>글삭제</button>
+                            </div>
                         </div>
                     </div>
                     <div className="writeReplyBox">
-                        <input className="replyInput"/>
-                        <button className="replySubmitButton">댓글쓰기</button>
+                        <textarea 
+                            className="replyInput" 
+                            value={replyContent}
+                            onChange={handleReplyContentChange}
+                            placeholder="댓글을 입력하세요."
+                        />
+                        <button className="replySubmitButton" onClick={handleSubmitReply}>댓글쓰기</button>
                     </div>
                     <div className="replyBox">
-                        <replyComponent/>
+                        {replyList.map((reply,index)=>(
+                            <ReplyComponent
+                                key={index}
+                                replyList={reply}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
