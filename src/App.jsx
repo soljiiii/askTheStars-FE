@@ -13,6 +13,7 @@ import MyLikedPostList from './pages/subpage/MyLikedPostList';
 import MyReplyList from './pages/subpage/MyReplyList';
 import MyWriteList from './pages/subpage/MyWriteList';
 import MyAlarm from './pages/subpage/MyAlarm';
+import PostModify from './pages/subpage/PostModify';
 
 function App() {
   return (
@@ -21,9 +22,10 @@ function App() {
       <Routes>
           <Route path="/" element={<MainPage/>}/>
 
-          <Route path="/community/*" element={<Community/>}/>
+          <Route path="/community/:page" element={<Community/>}/>
           <Route path="/community/write" element={<Write/>}/>
-          <Route path="/community/postdetail" element={<PostDetail/>}/>
+          <Route path="/community/postdetail/:postNo" element={<PostDetail/>}/>
+          <Route path="/community/postmodify/:postNo" element={<PostModify/>}/>
 
           <Route path="/login/*" element={<Login/>}/>
           <Route path="/login/memberJoin" element={<MemberJoin/>}/>

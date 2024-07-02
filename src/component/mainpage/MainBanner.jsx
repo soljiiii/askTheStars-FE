@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import "../../styles/MainPage.css"
-import { NextArrow, PrevArrow } from '../community/PostComponent';
+import { NextArrow, PrevArrow } from './ArrowComponet';
 
 
 function MainBanner() {

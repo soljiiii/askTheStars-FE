@@ -1,0 +1,466 @@
+/*글쓰기*/
+.postContainer{
+    width: 700px;
+    height: 850px;
+    margin: 120px auto;
+    border: 1px solid rgb(124, 124, 124);
+    background-color: #7a79792f;
+    border-radius: 15px;
+    display: flex;
+
+}
+.subjectContainer{
+    width: 700px;
+    height: 100px;
+    margin: 0px  auto ;
+    position: absolute;
+
+}
+.subjectInput{
+    width: 570px;
+    height: 50px;
+    margin: 30px 50px auto 50px;
+    border: none;
+    border-radius: 15px;
+    padding-left: 30px;
+}
+input:focus{
+    outline: none;
+}
+
+.contentContainer{
+    width: 700px;
+    height: 620px;
+    position: absolute;
+    margin: 100px 0px auto 0px;
+}
+.contentInput{
+    width: 540px;
+    height: 540px;
+    border: none;
+    background-color: rgb(154, 146, 146);
+    margin: 10px 50px auto 50px;
+    border-radius: 15px;
+    position: absolute;
+    padding:30px;
+    resize: none;
+}
+textarea:focus{
+    outline:none;
+}
+.submitContainer{
+    width: 700px;
+    height: 100px;
+    margin: 750px auto auto 0px;
+}
+.postSubmitButton{
+    width: 150px;
+    height: 50px;
+    margin: 10px 275px auto 275px;
+    border-radius: 20px;
+    border: none;
+    background-color: #abaaaa;
+    font-size: 18px;
+    font-weight: 600;
+}
+.postSubmitButton:hover{
+    background-color: #3b3b3b99;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+/*글 목록*/
+.communityContainer{
+    width: 900px;
+    height: 1100px;
+    margin: 20px 40px 100px 40px;
+}
+.communityButtonContainer{
+    width: 900px;
+    height: 100px;
+}
+.writeButton{
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    margin: 40px 50px auto 750px;
+    background-color: #abaaaa;
+    font-weight: 600;
+}
+.writeButton:hover{
+    background-color: #3b3b3b99;
+    border: 1px solid white;
+    cursor: pointer;
+}
+.postList{
+    width: 900px;
+    height: 900px;
+    margin-top: 30px;
+}
+.pagingBox{
+    width: 900px;
+    height: 100px;
+}
+
+/*글 컴포넌트*/
+.postComponentContainer{
+    width: 900px;
+    height: 40px;
+    display: flex;
+    margin-bottom: 8px;
+}
+.postNoBox{
+    width: 50px;
+    height: 40px;
+    border: 1px solid #dbdada;
+    background-color: #dbdada;
+    border-radius: 15px;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.postTitleBox{
+    width: 580px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 20px;
+}
+.postTitleLink{
+    text-decoration: none;
+    color: white;
+}
+.postDateBox{
+    width: 100px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.postVwCntBox{
+    width: 50px;
+    height: 40px;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+.postWriterBox{
+    width: 100px;
+    height: 40px;
+    border: 1px solid white;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+/*페이징*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #545353;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+ul.pagination li
+
+ul.pagination li:first-child{
+    border-radius: 5px 0 0 5px;
+}
+
+ul.pagination li:last-child{
+    border-radius: 0 5px 5px 0;
+}
+
+ul.pagination li a {
+    text-decoration: none;
+    color: #f9fafb;
+    font-size: 1rem;
+}
+
+ul.pagination li.active a {
+    color: rgb(255, 255, 255);
+}
+
+ul.pagination li.active {
+    background-color: #9a9a9a;
+}
+
+ul.pagination li a:hover,
+ul.pagination li a.active {
+    color: rgb(117, 117, 117);
+    font-weight: 500;
+}
+
+.page-selection {
+    width: 48px;
+    height: 30px;
+    color: #919191;
+}
+
+/*상세페이지*/
+.postDetailContainer{
+    width: 900px;
+    min-height: 1235px;
+    margin: 70px auto 350px auto;
+    border: none;
+    color: white;
+}
+.postDetailBox{
+    width: 900px;
+    height: 1000px;
+    border: none;
+}
+.postDetailTitleBox{
+    width: 770px;
+    height: 50px;
+    margin: 20px 50px auto 50px;
+    border: 1px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 30px;
+}
+.postDetailStateBox{
+    width: 800px;
+    height: 50px;
+    border: none;
+    margin: 0px 50px auto 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+.postDetailVwCntBox{
+    width: 50px;
+    height: 40px;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postDetailDateBox{
+    width: 100px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postDetailIdBox{
+    width: 100px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postDetailContentBox{
+    width: 800px;
+    height: 875px;
+    border: 1px solid none;
+    margin: 0px 50px auto 50px;
+}
+.contentBox{
+    width: 770px;
+    height: 695px;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding-left: 30px;
+    padding-top: 30px;
+}
+.likeButtonBox{
+    width: 800px;
+    height: 150px;
+    margin-top: 5px;
+    border: none;
+    display: flex;
+}
+.likeStubBox{
+    width: 440px;
+    height: 150px;
+    display: block;
+}
+.postStubBox{
+    width: 360px;
+    height: 150px;
+    display: flex;
+}
+.likeButton{
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    border: none;
+    background-color: black;
+    margin: 20px auto 0px 360px;
+}
+.likeButton:hover{
+    cursor: pointer;
+    background-color: #545353;
+    border-radius: 100px;
+}
+.likeCnt{
+    width: 80px;
+    height: 20px;
+    margin: 90px auto auto 360px;
+}
+.postModifyButton{
+    width: 100px;
+    height: 40px;
+    margin:  70px auto auto 120px;
+    border-radius: 15px;
+    background-color: #d7d7d7;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.postDeleteButton{
+    width: 100px;
+    height: 40px;
+    margin: 70px 20px auto auto;
+    border-radius: 15px;
+    background-color: #d7d7d7;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.postModifyButton:hover, .postDeleteButton:hover{
+    background-color: #545353;
+    cursor: pointer;
+}
+.writeReplyBox{
+    width: 800px;
+    height: 150px;
+    border: none;
+    margin: 0px 50px 50px 50px;
+    display: flex;
+}
+.replyInput{
+    width: 640px;
+    height: 90px;
+    background-color: #dfdfdfda;
+    resize: none;
+    margin-top: 18px;
+    margin-left: 5px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 16px;
+}
+.replySubmitButton{
+    width: 100px;
+    height: 40px;
+    margin-top: 107px;
+    margin-left: 8px;
+    border-radius: 15px;
+    background-color: #d7d7d7;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.replySubmitButton:hover{
+    background-color: #545353;
+    cursor: pointer;
+}
+.replyBox{
+    width: 800px;
+    border: none;
+    margin: 100px 50px 100px 50px;
+}
+
+/*댓글박스*/
+.replyContainer{
+    width: 800px;
+    height: 120px;
+    display: flex;
+    margin-bottom: 20px;
+}
+.replyInfoBox{
+    width: 120px;
+    display: block;
+}
+.replyIdBox{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    margin: 5px 5px auto auto;
+    border-radius: 20px;
+}
+.replyDateBox{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    margin: 5px 5px auto auto;
+    border-radius: 20px;
+}
+.replyContentBox{
+    width: 440px;
+    height: 80px;
+    padding: 20px;
+    border: 1px solid white;
+    resize: none;
+    border-radius: 15px;
+}
+.replyButtonBox{
+    width: 120px;
+    display: block;
+}
+.replyModifyButton{
+    width: 100px;
+    height: 30px;
+    margin: 40px auto auto 50px;
+    border-radius: 20px;
+    border: none;
+}
+.replyDeleteButton{
+    width: 100px;
+    height: 30px;
+    margin: 10px auto auto 50px;
+    border-radius: 20px;
+    border: none;
+}
+.replyModifyButton:hover, .replyDeleteButton:hover{
+    background-color: #545353;
+    cursor: pointer;
+}
