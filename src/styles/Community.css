@@ -231,7 +231,7 @@ ul.pagination li a.active {
 .postDetailContainer{
     width: 900px;
     min-height: 1235px;
-    margin: 70px auto 150px auto;
+    margin: 70px auto 350px auto;
     border: none;
     color: white;
 }
@@ -399,14 +399,14 @@ ul.pagination li a.active {
 }
 .replyBox{
     width: 800px;
-    border: 1px solid blue;
-    margin: 0px 50px 500px 50px;
+    border: none;
+    margin: 100px 50px 100px 50px;
 }
 
 /*댓글박스*/
 .replyContainer{
     width: 800px;
-    min-height: 120px;
+    height: 120px;
     display: flex;
     margin-bottom: 20px;
 }
@@ -422,6 +422,7 @@ ul.pagination li a.active {
     justify-content: center;
     border: 1px solid white;
     margin: 5px 5px auto auto;
+    border-radius: 20px;
 }
 .replyDateBox{
     width: 100px;
@@ -431,12 +432,15 @@ ul.pagination li a.active {
     justify-content: center;
     border: 1px solid white;
     margin: 5px 5px auto auto;
+    border-radius: 20px;
 }
 .replyContentBox{
     width: 440px;
-    min-height: 80px;
+    height: 80px;
     padding: 20px;
     border: 1px solid white;
+    resize: none;
+    border-radius: 15px;
 }
 .replyButtonBox{
     width: 120px;
