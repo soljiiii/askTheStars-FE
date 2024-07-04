@@ -122,4 +122,11 @@ body {
     height: 100px;
     margin-top: 45px;
     border-radius: 15px;
+    font-weight: 500;
+    font-size: 30px;
+    color: rgb(105, 105, 105);
+}
+.chattingButton:hover{
+    background-color: rgb(147, 147, 142);
+    cursor: pointer;
 }

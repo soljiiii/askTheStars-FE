@@ -14,6 +14,8 @@ import MyReplyList from './pages/subpage/MyReplyList';
 import MyWriteList from './pages/subpage/MyWriteList';
 import MyAlarm from './pages/subpage/MyAlarm';
 import PostModify from './pages/subpage/PostModify';
+import Chatting from './pages/subpage/Chatting'
+import OnChatting from './pages/subpage/OnChatting';
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
       <BrowserRouter>
       <Routes>
           <Route path="/" element={<MainPage/>}/>
+
+          <Route path="/chatting" element={<Chatting/>}/>
+          <Route path="/onchatting" element={<OnChatting/>}/>
 
           <Route path="/community/:page" element={<Community/>}/>
           <Route path="/community/write" element={<Write/>}/>

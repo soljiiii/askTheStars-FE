@@ -1,11 +1,11 @@
 import Header from "../../layouts/Header"
-import ReplyComponent from "../../component/community/ReplyComponent"
 import "../../styles/Community.css"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { formatDate } from "../../util/util";
 import axios from "axios"
 import { getCookie } from "../../util/util"
+import RepComponent from "../../component/community/RepComponent";
 
 function PostDetail(){
 
@@ -155,7 +155,7 @@ function PostDetail(){
                         </div>
                         <div className="replyBox">
                             {replyList.map((reply,index)=>(
-                                <ReplyComponent
+                                <RepComponent
                                     key={index}
                                     replyList={reply}
                                     userId={userId}
@@ -206,7 +206,7 @@ function PostDetail(){
                         </div>
                         <div className="replyBox">
                             {replyList.map((reply,index)=>(
-                                <ReplyComponent
+                                <RepComponent
                                     key={index}
                                     replyList={reply}
                                     userId={userId}

@@ -1,9 +1,22 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Header from "../../layouts/Header";
 import "../../styles/MainPage.css"
 import MainBanner from "../../component/mainpage/MainBanner";
+import { useState } from "react";
 
 function MainPage() {
+
+    const navigate = useNavigate();
+    const [isPopUpOpen, setPopUpOpen] = useState(false);
+    
+    function chattingPopUp() {
+        const url = "http://localhost:5173/chatting";
+        const name = "_blank";
+        const specs = "width=500,height=600,resizable=no,scrollbars=yes,status=no";
+        window.open(url, name, specs);
+    }    
+    
+
     return (
         <>
             <Header/>
@@ -31,7 +44,7 @@ function MainPage() {
                         </Link><br/>
                     </div>
                     <div className="chattinButtonBox">
-                        <button className="chattingButton">
+                        <button className="chattingButton" onClick={chattingPopUp}>
                             초신성 상담
                         </button>
                     </div>
