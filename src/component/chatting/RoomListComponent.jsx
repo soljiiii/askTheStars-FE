@@ -5,8 +5,11 @@ function RoomListComponent(){
 
     const navigate = useNavigate();
 
+    //방정보 불러오기
+    
+
     function joinChatiing(){
-        navigate(`/onchatting`)
+        navigate(`/onchatting/${roomNo}`)
     }
 
     return(

@@ -25,7 +25,7 @@ function App() {
           <Route path="/" element={<MainPage/>}/>
 
           <Route path="/chatting" element={<Chatting/>}/>
-          <Route path="/onchatting" element={<OnChatting/>}/>
+          <Route path="/onchatting/:roomNo" element={<OnChatting/>}/>
 
           <Route path="/community/:page" element={<Community/>}/>
           <Route path="/community/write" element={<Write/>}/>
