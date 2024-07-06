@@ -1,0 +1,209 @@
+.myPageContainer{
+    width: 980px;
+    height: 600px;
+    display: flex;
+}
+.sideBannerContainer{
+    width: 150px;
+    height: 350px;
+    margin: 40px auto 200px 50px;
+    display: block;
+    font-size: 20px;
+}
+.myWriteBox{
+    width: 150px;
+    height: 70px;
+    border-bottom: 3px solid rgb(81, 81, 81);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myReplyBox{
+    width: 150px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid rgb(81, 81, 81);
+}
+.myLikePostBox{
+    width: 150px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid rgb(81, 81, 81);
+}
+.memberModifyBox{
+    width: 150px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid rgb(81, 81, 81);
+}
+.memberDeleteBox{
+    width: 150px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid rgb(81, 81, 81);
+}
+.writeListButton, .myReplyButton, .myLikePostButton, .memberModifyButton, .memberDeleteButton{
+    font-size: 20px;
+    background-color: black;
+    border-radius: 100px;
+    border: none;
+    color: white;
+}
+.writeListButton:hover, .myReplyButton:hover, .myLikePostButton:hover, .memberModifyButton:hover, .memberDeleteButton:hover{
+    background-color: rgb(70, 70, 70);
+    cursor: pointer;
+}
+.writeListButtonclicked, .myReplyButtonclicked, .myLikePostButtonclicked, .memberModifyButtonclicked, .memberDeleteButtonclicked{
+    font-size: 20px;
+    background-color: black;
+    border-radius: 100px;
+    border:5px solid rgb(70, 70, 70);
+    color: white;
+}
+.myPageStateBox{
+    width: 800px;
+}
+
+/*글 컴포넌트*/
+.myPageWriteComponentBox{
+    width: 610px;
+    height: 40px;
+    display: flex;
+    color: white;
+    border-bottom: 2px solid rgb(47, 32, 44);
+    margin-bottom: 5px;
+}
+.myPageWriteComponentBox:hover{
+    cursor: pointer;
+    background-color: rgb(34, 34, 34);
+    border-radius: 20px;
+}
+.myPageWritePostNo{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myPageWriteContent{
+    width: 465px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.myPageWriteDate{
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+/*내가 쓴 글 리스트*/
+.myWriteListContainer{
+    width: 610px;
+    margin: 50px 80px 100px 90px;
+}
+.writeListBox{
+    display: flex;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    margin: 0px 0px 20px 0px;
+}
+.writePostNoBox{
+    width: 60px;
+    height: 50px;
+    border: 3px solid rgb(0, 0, 0);
+    background-color: rgb(186, 146, 203);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.writeContentBox{
+    width: 470px;
+    height: 50px;
+    border: 3px solid rgb(0, 0, 0);
+    background-color: rgb(142, 112, 155);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.writeDateBox{
+    width: 80px;
+    height: 50px;
+    border: none;
+    background-color: rgb(114, 89, 124);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*기본화면*/
+.standMyPageContaienr{
+    width: 610px;
+    margin: 50px 80px 100px 90px;
+}
+.myPageInfoBox{
+    width: 600px;
+    height: 300px;
+    display: flex;
+}
+.myPageImageBox{
+    border: 1px solid white;
+    width: 200px;
+    height: 200px;
+    margin: 50px 0px auto 50px;
+}
+.myPageIntroBox{
+    border: 1px solid white;
+    width: 300px;
+    height: 200px;
+    margin: 50px 50px auto 0px;
+}
+
+/*회원탈퇴*/
+.memberDeleteContainer{
+    width: 610px;
+    margin: 50px 80px 100px 90px;
+    border: 1px solid white;
+}
+.memberDeleteRealBox{
+    width: 400px;
+    height: 300px;
+    border: 1px solid white;
+    margin: 50px 105px auto 105px;
+    display: block;
+}
+.memberDeleteInputBox{
+    width: 400px;
+    height: 200px;
+}
+.memberDeleteInput{
+    width: 260px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 50px;
+    margin: 80px 50px auto 50px;
+}
+.memberDeleteRealButtonBox{
+    width: 400px;
+    height: 100px;
+}
+.memberDeleteRealButton{
+    width: 70px;
+    height: 40px;
+    margin: 10px 165px auto 165px;
+}

@@ -7,11 +7,6 @@ import MyPage from './pages/titlepage/MyPage';
 import PostDetail from './pages/subpage/PostDetail';
 import Write from './pages/subpage/Write';
 import MemberJoin from './pages/subpage/MemberJoin';
-import MemberDelete from './pages/subpage/MemberDelete';
-import MemberModify from './pages/subpage/MemberModify';
-import MyLikedPostList from './pages/subpage/MyLikedPostList';
-import MyReplyList from './pages/subpage/MyReplyList';
-import MyWriteList from './pages/subpage/MyWriteList';
 import MyAlarm from './pages/subpage/MyAlarm';
 import PostModify from './pages/subpage/PostModify';
 import Chatting from './pages/subpage/Chatting'
@@ -36,11 +31,6 @@ function App() {
           <Route path="/login/memberJoin" element={<MemberJoin/>}/>
 
           <Route path="/mypage/*" element={<MyPage/>}/>
-          <Route path="/mypage/memberdelete" element={<MemberDelete/>}/>
-          <Route path="/mypage/membermodify" element={<MemberModify/>}/>
-          <Route path="/mypage/mylikedpostlist" element={<MyLikedPostList/>}/>
-          <Route path="/mypage/myreplylist" element={<MyReplyList/>}/>
-          <Route path="/mypage/mywritelist" element={<MyWriteList/>}/>
           <Route path="/mypage/alarm" element={<MyAlarm/>}/>
       </Routes>
       </BrowserRouter>

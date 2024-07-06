@@ -5,8 +5,6 @@ import "../../styles/Community.css";
 import { getCookie } from "../../util/util";
 import axios from "axios";
 import PostComponent from "../../component/community/PostComponent";
-import MyWriteList from "../subpage/MyWriteList";
-import Write from "../subpage/Write";
 import Pagenation from "react-js-pagination";
 
 function Community() {
