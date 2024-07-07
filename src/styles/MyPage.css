@@ -160,30 +160,64 @@
     width: 600px;
     height: 300px;
     display: flex;
+    color: aliceblue;
+    font-size: 20px;
+    font-weight: 500;
 }
 .myPageImageBox{
-    border: 1px solid white;
+
     width: 200px;
     height: 200px;
     margin: 50px 0px auto 50px;
 }
-.myPageIntroBox{
-    border: 1px solid white;
-    width: 300px;
+.starImg{
+    width: 200px;
     height: 200px;
+}
+.myPageIntroBox{
+
+    width: 300px;
+    height: 150px;
     margin: 50px 50px auto 0px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.myPageIntroIdBox{
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myPageIntroNickBox{
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.myPageIntroNmBox{
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*회원탈퇴*/
 .memberDeleteContainer{
     width: 610px;
-    margin: 50px 80px 100px 90px;
-    border: 1px solid white;
+    margin: 80px 80px 100px 90px;
+    border: none;
+    color:white;
+    text-align: center;
+    font-size: 20px;
 }
 .memberDeleteRealBox{
     width: 400px;
     height: 300px;
-    border: 1px solid white;
+    border: 3px solid rgb(106, 106, 106);
+    border-radius: 15px;
     margin: 50px 105px auto 105px;
     display: block;
 }
@@ -197,13 +231,25 @@
     padding-right: 20px;
     height: 50px;
     margin: 80px 50px auto 50px;
+    border-radius: 15px;
+    border: none;
+    background-color: antiquewhite;
 }
 .memberDeleteRealButtonBox{
     width: 400px;
     height: 100px;
 }
 .memberDeleteRealButton{
-    width: 70px;
+    width: 90px;
     height: 40px;
-    margin: 10px 165px auto 165px;
+    margin: 10px 155px auto 155px;
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: aliceblue;
+}
+.memberDeleteRealButton:hover{
+    cursor: pointer;
+    background-color: antiquewhite;
 }
