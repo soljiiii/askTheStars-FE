@@ -23,6 +23,14 @@ function CreateRoomModal({isOpen, onClose}){
         setRoomName("");
         onClose();
     }
+    const stompClient = new Client({
+        // STOMP 서버 주소 설정
+        brokerURL: 'ws://localhost:80/websocket',
+        debug: function (str) {
+            console.log(str);
+        },
+        reconnectDelay: 5000,
+    });
 
     //방 만들기 요청 서버로 보내기
     function createRoomSubmit(){

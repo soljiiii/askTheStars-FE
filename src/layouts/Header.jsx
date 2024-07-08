@@ -4,12 +4,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getCookie } from "../util/util";
 import axios from "axios";
+import { useLayoutEffect } from "react";
 
 function Header(){
 
     const [accessToken, setAccessToken] = useState(null);
 
-    useEffect(()=>{
+    useLayoutEffect(()=>{
         const cookieValue = getCookie("accessToken");
         if(cookieValue){
             setAccessToken(cookieValue);
@@ -48,7 +49,9 @@ function Header(){
                     
                 </div>
                 <div className="headerMypage">
-                    <Link to="/mypage"><img className="menuImage" src="/menu.png"/></Link><br/>
+                    {accessToken?
+                    (<Link to="/mypage"><img className="menuImage" src="/menu.png"/></Link>)
+                    :(<Link to="/login"><img className="menuImage" src="/menu.png"/></Link>)}
                 </div>
             </div>
         </div>

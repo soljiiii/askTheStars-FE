@@ -7,7 +7,6 @@ import MyPage from './pages/titlepage/MyPage';
 import PostDetail from './pages/subpage/PostDetail';
 import Write from './pages/subpage/Write';
 import MemberJoin from './pages/subpage/MemberJoin';
-import MyAlarm from './pages/subpage/MyAlarm';
 import PostModify from './pages/subpage/PostModify';
 import Chatting from './pages/subpage/Chatting'
 import OnChatting from './pages/subpage/OnChatting';
@@ -31,7 +30,6 @@ function App() {
           <Route path="/login/memberJoin" element={<MemberJoin/>}/>
 
           <Route path="/mypage/*" element={<MyPage/>}/>
-          <Route path="/mypage/alarm" element={<MyAlarm/>}/>
       </Routes>
       </BrowserRouter>
     </>

@@ -4,6 +4,11 @@ body {
     font-family: "IBM Plex Sans KR", sans-serif;
 }
 
-input, button, span, textarea {
+select, input, button, span, textarea {
     font-family: "IBM Plex Sans KR", sans-serif;
 }
+
+img{
+    border:0;
+}
+

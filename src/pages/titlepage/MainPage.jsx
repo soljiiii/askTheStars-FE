@@ -6,6 +6,8 @@ import { useState } from "react";
 import { getCookie } from "../../util/util";
 import { useEffect } from "react";
 import axios from "axios";
+import { useLayoutEffect } from "react";
+import PopularPost from "../../component/mainpage/PopularPost";
 
 function MainPage() {
 
@@ -16,13 +18,19 @@ function MainPage() {
     const [selectedOption, setSelectedOption] = useState("vwCnt");
     const [popularPost, setPopularPost] = useState([]);
 
+
     function chattingPopUp() {
-        const url = "http://localhost:5173/chatting";
-        const name = "_blank";
-        const specs = "width=500,height=600,resizable=no,scrollbars=yes,status=no";
-        window.open(url, name, specs);
+        if(accessToken!==null){
+            const url = "http://localhost:5173/chatting";
+            const name = "_blank";
+            const specs = "width=500,height=600,resizable=no,scrollbars=yes,status=no";
+            window.open(url, name, specs);
+        }
+        else{
+            alert("로그인 후 이용 가능해요!");
+        }
     }    
-    useEffect(()=>{
+    useLayoutEffect(()=>{
         const cookieValue = getCookie("accessToken");
         if(cookieValue){
             setAccessToken(cookieValue);
@@ -79,7 +87,6 @@ function MainPage() {
         })
     },[selectedOption])
     
-
     return (
         <>
             <Header/>
@@ -89,18 +96,18 @@ function MainPage() {
                         <MainBanner/>
                     </div>
                     <div className="topPostBox">
-                        <button className="morePostButton">
-                            <Link to="/community/1" className="morePostButtonLink">▶ 전체보기</Link><br/>
-                        </button>
                         <div className="topPostSubBox">
                             <div className="topPostSubSelect">
-                                <select id="topPostOption" value={selectedOption} onChange={handleSelectOnChange}>
+                                <select  className="selectOption" id="topPostOption" value={selectedOption} onChange={handleSelectOnChange}>
                                     <option value="vwCnt">조회수</option>
                                     <option value="likeCnt">좋아요수</option>
                                     <option value="newPost">최신순</option>
                                 </select>
                             </div>
                             <div className="topPostSub">실시간 인기글 🔥</div>
+                            <button className="morePostButton">
+                                <Link to="/community/1" className="morePostButtonLink">▶ 전체보기</Link><br/>
+                            </button>
                         </div>
                         <div className="topPostContentBox">
                             <div className="topPostCountBox">
@@ -110,7 +117,14 @@ function MainPage() {
                                 <div className="count">4</div>
                                 <div className="count">5</div>
                             </div>
-                            <div className="topPostContent"></div>
+                            <div className="topPostContent">
+                                {popularPost.map((post,index)=>(
+                                    <PopularPost
+                                        key={index}
+                                        post={post}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,9 +136,6 @@ function MainPage() {
                             </div>
                             <Link to="/mypage" className="settingIconLink">
                                 <img src="/setting.png" className="settingIcon"/>
-                            </Link><br/>
-                            <Link to="/mypage/alarm" className="messageIconLink">
-                                <div className="messageIcon">내 소식</div>
                             </Link><br/>
                         </div>
                     ):(
