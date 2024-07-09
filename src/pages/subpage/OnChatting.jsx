@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCookie } from "../../util/util";
 import axios from "axios";
+import {Stomp} from '@stomp/stompjs';
+
 
 
 function OnChatting(){
@@ -9,6 +11,9 @@ function OnChatting(){
     const {roomId} = useParams();
     const [accessToken, setAccessToken] = useState(null);
     const [userId, setUserId] = useState("");
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
+    const [chatClient,setChatClient]= useState("")
 
     //쿠키 가져오기
     useEffect(()=>{
@@ -33,6 +38,64 @@ function OnChatting(){
             setUserId(response.data);
         })
     },[accessToken])
+
+    //서버연결
+    if(!chatClient){
+        const websocket = new WebSocket('ws://localhost:80/websocket');
+        const stomp = Stomp.over(()=>websocket);
+    
+        const connectCallback=()=>{
+            //채팅방 생성 요청
+            stomp.send('/app/createChatRoom',{},JSON.stringify({roomId}));
+            console.log("채팅방 생성 성공");
+    
+            //채팅방 입장 요청
+            stomp.send('/app/joinChatRoom',{},JSON.stringify({roomId}));
+            console.log('채팅방 입장 성공');
+    
+            //채팅방 구독 요청
+            stomp.subscribe('/topic/'+roomId,(message)=>{
+                const receive = JSON.parse(message.body);
+                const newMessage = {
+                    message: receive.message
+                };
+                setMessages(preMessages => [...preMessages, newMessage]);
+                setMessage('');
+            })
+        }
+        const errorCallback=()=>{
+            console.log('서버연결실패');
+        }
+        stomp.connect({},connectCallback,errorCallback);
+        setChatClient(stomp);
+    }
+
+        // 송신
+        const sendMessage = () => {
+            // chatClient가 존재하지 않으면 실행하지 않는다.
+            if (!chatClient) {
+                console.error('[chatClient]가 존재하지 않습니다.');
+                return;
+            }
+    
+            // 메시지 송신 요청
+            chatClient.send('/app/sendMessage', {}, JSON.stringify({roomId, message}));
+        };
+    
+        // 키보드 이벤트 핸들러 (enter키를 눌렀을 때 메시지 송신)
+        const enter = (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        };
+    
+        useEffect(()=>{
+            if(!chatClient) {
+                chatClient.send('/pub/exitRoom', {}, ({roomId}));
+                console.log('채팅방 퇴장 성공!');
+                chatClient.disconnect();
+            }
+        }, []);
 
     //나가기 처리
 
