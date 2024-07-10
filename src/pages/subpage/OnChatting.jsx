@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { json, useParams } from "react-router-dom";
 import { getCookie } from "../../util/util";
 import axios from "axios";
 import {Stomp} from '@stomp/stompjs';
-
-
 
 function OnChatting(){
 
@@ -13,7 +11,7 @@ function OnChatting(){
     const [userId, setUserId] = useState("");
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const [chatClient,setChatClient]= useState("")
+    const [chatClient,setChatClient]= useState(null);
 
     //쿠키 가져오기
     useEffect(()=>{
@@ -39,67 +37,57 @@ function OnChatting(){
         })
     },[accessToken])
 
-    //서버연결
-    if(!chatClient){
+    console.log("roomId:",roomId);
+    console.log("userID:",userId);
+
+    if(!chatClient && roomId && userId){
+        //서버연결
         const websocket = new WebSocket('ws://localhost:80/websocket');
+        //stomp 클라이언트 생성
         const stomp = Stomp.over(()=>websocket);
-    
+        console.log("클라이언트 생성");
+
         const connectCallback=()=>{
-            //채팅방 생성 요청
-            stomp.send('/app/createChatRoom',{},JSON.stringify({roomId}));
-            console.log("채팅방 생성 성공");
-    
-            //채팅방 입장 요청
-            stomp.send('/app/joinChatRoom',{},JSON.stringify({roomId}));
-            console.log('채팅방 입장 성공');
-    
-            //채팅방 구독 요청
-            stomp.subscribe('/topic/'+roomId,(message)=>{
+            console.log("WebSocket 연결 성공");
+            console.log("Room ID:", roomId);
+            console.log("User ID:", userId);
+            //채팅방 생성
+            stomp.send('/pub/createChatRoom',{},JSON.stringify({roomId, userId}));
+            //채팅방 입장
+            stomp.send('/pub/joinChatRoom',{},JSON.stringify({roomId, userId}));
+            //채팅방 구독
+            stomp.subscribe('/sub/'+roomId,(message=>{
                 const receive = JSON.parse(message.body);
-                const newMessage = {
-                    message: receive.message
-                };
-                setMessages(preMessages => [...preMessages, newMessage]);
-                setMessage('');
-            })
+                console.log(receive)
+                //받은 메세지 처리
+                setMessages(preMessages=>[...preMessages, receive])
+                console.log(messages)          
+            }))
         }
         const errorCallback=()=>{
-            console.log('서버연결실패');
+            console.error('websocket 서버 연결 실패');
         }
-        stomp.connect({},connectCallback,errorCallback);
+
+        stomp.connect({}, connectCallback, errorCallback);
+
         setChatClient(stomp);
     }
 
-        // 송신
-        const sendMessage = () => {
-            // chatClient가 존재하지 않으면 실행하지 않는다.
-            if (!chatClient) {
-                console.error('[chatClient]가 존재하지 않습니다.');
-                return;
-            }
+    //메세지 전송
+    const sendMessage=()=>{
+        if(!chatClient){
+            console.error("사용자가 존재하지 않습니다");
+            return;
+        }
+        chatClient.send('/pub/sendMessage',{},JSON.stringify({roomId, userId, message}));
+        console.log(message);
+    }
     
-            // 메시지 송신 요청
-            chatClient.send('/app/sendMessage', {}, JSON.stringify({roomId, message}));
-        };
-    
-        // 키보드 이벤트 핸들러 (enter키를 눌렀을 때 메시지 송신)
-        const enter = (event) => {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        };
-    
-        useEffect(()=>{
-            if(!chatClient) {
-                chatClient.send('/pub/exitRoom', {}, ({roomId}));
-                console.log('채팅방 퇴장 성공!');
-                chatClient.disconnect();
-            }
-        }, []);
-
-    //나가기 처리
-
-    //send 메세지
+    const enter = (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    };
 
     return(
         <div style={{ 
@@ -119,10 +107,16 @@ function OnChatting(){
             </div>
             <div className="sendContainer">
                 <div className="messageBox">
-                    <input className="messageInput"/>
+                    <input 
+                        className="messageInput" 
+                        value={message}
+                        onChange = {(e) => setMessage(e.target.value)}
+                        onKeyDown = {enter}
+                        placeholder = '메시지를 입력하세요.'
+                    />
                 </div>
                 <div className="sendButtonBox">
-                    <button className="sendButton">보내기</button>
+                    <button className="sendButton" onClick={sendMessage}>보내기</button>
                 </div>
             </div>
 
