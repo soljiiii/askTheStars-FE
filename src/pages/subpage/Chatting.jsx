@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import RoomListComponent from '../../component/chatting/RoomListComponent';
 import CreateRoomModal from '../../component/chatting/CreateRoomModal';
+import axios from 'axios';
 
 function Chatting() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [chatList, setChatList] = useState([]);
 
     function modalOpenState(){
         if(isModalOpen===true){
@@ -15,6 +17,15 @@ function Chatting() {
             setIsModalOpen(true);
         }
     }
+
+    //채팅방 목록 불러오기
+    useEffect(()=>{
+        axios.get(`http://localhost:80/getChatList`)
+        .then(response=>{
+            console.log(response.data);
+            setChatList(response.data);
+        })
+    },[])
 
     return ReactDOM.createPortal(
         <div style={{ 
@@ -35,7 +46,12 @@ function Chatting() {
                     />
                 </div>
                 <div className="roomList">
-                    <RoomListComponent/>
+                    {chatList.map((chat, index)=>(
+                        <RoomListComponent
+                            key={index}
+                            chat={chat}
+                        />
+                    ))}
                 </div>
             </div>
         </div>,

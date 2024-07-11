@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
-import { json, useParams } from "react-router-dom";
+import { json, useNavigate, useParams } from "react-router-dom";
 import { getCookie } from "../../util/util";
 import axios from "axios";
 import {Stomp} from '@stomp/stompjs';
-
+import MyChat from "../../component/chatting/MyChat";
+import YourChat from "../../component/chatting/YourChat";
 function OnChatting(){
 
     const {roomId} = useParams();
     const [accessToken, setAccessToken] = useState(null);
     const [userId, setUserId] = useState("");
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
+    const [myMessage, setMyMessage] = useState("");
+    const [yourMessage, setYourMessage] = useState([]);
     const [chatClient,setChatClient]= useState(null);
+    const [chatState, setChatState] = useState("");
+    const navigate = useNavigate();
 
+    
     //쿠키 가져오기
     useEffect(()=>{
         const cookieValue = getCookie("accessToken");
@@ -37,9 +41,6 @@ function OnChatting(){
         })
     },[accessToken])
 
-    console.log("roomId:",roomId);
-    console.log("userID:",userId);
-
     if(!chatClient && roomId && userId){
         //서버연결
         const websocket = new WebSocket('ws://localhost:80/websocket');
@@ -58,10 +59,18 @@ function OnChatting(){
             //채팅방 구독
             stomp.subscribe('/sub/'+roomId,(message=>{
                 const receive = JSON.parse(message.body);
-                console.log(receive)
                 //받은 메세지 처리
-                setMessages(preMessages=>[...preMessages, receive])
-                console.log(messages)          
+                setYourMessage(preMessage=>[...preMessage, receive])
+                console.log(receive);
+                
+                if(receive.type==='join'){
+                    setChatState(receive.userId,+"가 참여");
+                    console.log(chatState)
+                }
+                else if(receive.type==='leave'){
+                    setChatState(receive.userId,+"가 퇴장");
+                    console.log(chatState)
+                }
             }))
         }
         const errorCallback=()=>{
@@ -79,8 +88,8 @@ function OnChatting(){
             console.error("사용자가 존재하지 않습니다");
             return;
         }
-        chatClient.send('/pub/sendMessage',{},JSON.stringify({roomId, userId, message}));
-        console.log(message);
+        chatClient.send('/pub/sendMessage',{},JSON.stringify({roomId, userId, myMessage}));
+        console.log(myMessage);
     }
     
     const enter = (event) => {
@@ -88,6 +97,26 @@ function OnChatting(){
             sendMessage();
         }
     };
+
+    //방 나가기
+    function exitRoom(){
+        // chatClient.send('/pub/exitRoom',{},JSON.stringify({roomId}))
+        // chatClient.disconnect();
+        navigate(`/chatting`)
+        window.location.reload();
+        console.log("나가기");
+    }
+
+    //창 닫으면 채팅 통신 끊기
+    window.addEventListener('beforeunload', function(event) {
+        // WebSocket을 통한 메시지 전송 및 연결 종료
+        if (chatClient) {
+            chatClient.send('/pub/exitRoom', {}, JSON.stringify({ roomId }));
+            chatClient.disconnect();
+        }
+    });
+    
+    
 
     return(
         <div style={{ 
@@ -97,20 +126,26 @@ function OnChatting(){
             backgroundColor: 'black',
             boxShadow: '0px 0px 10px rgba(0,0,0,0.5)',
             zIndex: '1000',
-            overflowY: 'auto'
+            overflowY: 'auto',
+            overflow: 'hidden'
         }}>
             <div className="exitButtonBox">
-                <button className="exitButton">나가기</button>
+                <div className="stateBox"></div>
+                <button className="exitButton" onClick={exitRoom}>나가기</button>
             </div>
-            <div className="chattingContainer">
-
+            <div className="chatContainer">
+                <div className="chatBox">
+                    {chatState!==null?(<span>{chatState}</span>):(<></>)}
+                <MyChat/>
+                <YourChat/>
+                </div>
             </div>
             <div className="sendContainer">
                 <div className="messageBox">
-                    <input 
+                    <textarea
                         className="messageInput" 
-                        value={message}
-                        onChange = {(e) => setMessage(e.target.value)}
+                        value={myMessage}
+                        onChange = {(e) => setMyMessage(e.target.value)}
                         onKeyDown = {enter}
                         placeholder = '메시지를 입력하세요.'
                     />
