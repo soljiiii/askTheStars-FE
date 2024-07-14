@@ -2,8 +2,8 @@ import { useState } from "react";
 import "../../styles/Chatting.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Stomp } from '@stomp/stompjs';
 import { useEffect } from "react";
+import { getCookie } from "../../util/util";
 
 function CreateRoomModal({ isOpen, onClose }) {
     const [roomName, setRoomName] = useState("");
@@ -12,6 +12,8 @@ function CreateRoomModal({ isOpen, onClose }) {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const [chatClient, setChatClient] = useState(null);
+    const [accessToken, setAccessToken] = useState(null);
+    const [userId, setUserId] = useState("");
 
     // input 값 onChange 및 저장
     function handleRoomNameOnChange(e) {
@@ -26,15 +28,45 @@ function CreateRoomModal({ isOpen, onClose }) {
         onClose();
     }
 
+     //쿠키 가져오기
+    useEffect(()=>{
+        const cookieValue = getCookie("accessToken");
+        if(cookieValue){
+            setAccessToken(cookieValue);
+        }
+        else{
+            setAccessToken(null);
+        }
+    },[])
+
+    //JWT 토큰 주인 ID
+    useEffect(()=>{
+        axios.get(`http://localhost:80/getMemberId`,{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            },
+            withCredential:true
+        })
+        .then(response=>{
+            setUserId(response.data);
+        })
+    },[accessToken])
+
     // 방 만들기 요청 서버로 보내기
     function createRoomSubmit() {
         const data = { chatTitle: roomName };
         console.log(data);
 
         if (roomName !== "") {
-            axios.post(`http://localhost:80/createChat`, data)
+            axios.post(`http://localhost:80/createChat`, data,{
+                headers:{
+                    Authorization: `Bearer ${accessToken}`
+                },
+                withCredential:true
+            })
                 .then(response => {
                     const roomId = response.data;
+                    console.log(roomId);
                     if (typeof roomId === 'number') {
                         setRoomId(roomId);
                         console.log("Room ID:", roomId);

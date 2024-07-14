@@ -1,18 +1,58 @@
 import { useNavigate } from "react-router-dom";
 import "../../styles/Chatting.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { getCookie } from "../../util/util";
 
 function RoomListComponent({chat}){
 
-    const navigate = useNavigate();   
+    const navigate = useNavigate();  
+    const [userCnt, setUserCnt]= useState(0); 
+    const [accessToken, setAccessToken] = useState(null);
+    const [userId, setUserId] = useState("");
+
+
+    console.log(chat.chatNo);
+
+    //쿠키 가져오기
+    useEffect(()=>{
+        const cookieValue = getCookie("accessToken");
+        if(cookieValue){
+            setAccessToken(cookieValue);
+        }
+        else{
+            setAccessToken(null);
+        }
+    },[])
+
+    //JWT 토큰 주인 ID
+    useEffect(()=>{
+        axios.get(`http://localhost:80/getMemberId`,{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            },
+            withCredential:true
+        })
+        .then(response=>{
+            setUserId(response.data);
+        })
+    },[accessToken])
+
+    useEffect(()=>{
+        axios.get(`http://localhost:80/getUserCnt/${chat.chatNo}`)
+        .then(response=>{
+            setUserCnt(response.data);
+            console.log(response.data);
+        })
+    },[userCnt])
 
     //join
     function joinChatiing(){
-        if(chat.chatState===2){
-            alert("이미 상담 중이에요!");
+        if(userCnt===2){
+            alert("이미 진행 중인 상담입니다")
         }
-        else{
-            navigate(`/onchatting/${chat.chatNo}`);
+        if(userCnt===1){
+            navigate(`../onchatting/${chat.chatNo}`);
         }
     }
 
