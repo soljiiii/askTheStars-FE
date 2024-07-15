@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { json, useNavigate, useParams } from "react-router-dom";
 import { getCookie } from "../../util/util";
 import axios from "axios";
@@ -15,9 +15,10 @@ function OnChatting(){
     const [myMessage, setMyMessage] = useState("");
     const [yourMessage, setYourMessage] = useState([]);
     const [chatClient,setChatClient]= useState(null);
-    const [chatState, setChatState] = useState(0);
+    const [chatState, setChatState] = useState("");
     const navigate = useNavigate();
-
+    const [userCnt, setUserCnt] = useState(0);
+    const chatContainerRef = useRef(null);
     const [chatInfo, setChatInfo] = useState([]);
 
     
@@ -53,6 +54,7 @@ function OnChatting(){
             setChatInfo(response.data);
         })
     },[])
+
     useEffect(()=>{
         if(!chatClient && roomId && userId){
             //서버연결
@@ -73,49 +75,66 @@ function OnChatting(){
                 stomp.subscribe('/sub/'+roomId,(message=>{
                     const receive = JSON.parse(message.body);
                     //받은 메세지 처리
-                    setYourMessage(preMessage=>[...preMessage, receive])
+                    // setYourMessage(preMessage=>[...preMessage, receive])
                     console.log(receive);
-                    
-                    if(receive.type===1){
-                        setChatState(1);
-                    }
-                    else if(receive.type===2){
-                        setChatState(2);
-                    }
+                    setYourMessage(prevMessage => [...prevMessage, receive]);
                 }))
             }
             const errorCallback=()=>{
                 console.error('websocket 서버 연결 실패');
+                alert("서버에 이상이 있습니다. 다시 접속해주세요.")
             }
 
             stomp.connect({}, connectCallback, errorCallback);
-
             setChatClient(stomp);
+
             return () => {
-                if(stomp){
+                if(stomp && stomp.connected){
                     stomp.send('/pub/exitRoom', {}, JSON.stringify({roomId, userId}));
                     stomp.disconnect();
                     console.log("WebSocket 연결 종료");
                 }
             };
         }
-    },[])
+    },[userId, chatClient])
+
+    // 페이지가 닫힐 때 서버에 신호 보내기
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            if (chatClient && chatClient.connected) {
+                chatClient.send('/pub/exitRoom', {}, JSON.stringify({ roomId, userId }));
+                chatClient.disconnect();
+                console.log("WebSocket 연결 종료");
+            }
+            const confirmationMessage = '정말로 이 페이지를 떠나시겠습니까?';
+            event.returnValue = confirmationMessage; // 표준에 따라 필요
+            return confirmationMessage;
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [chatClient, roomId, userId]);
 
     //메세지 전송
     const sendMessage=()=>{
-        if(!chatClient){
+        if(!chatClient|| !chatClient.connected){
             console.error("사용자가 존재하지 않습니다");
-            return;
+            alert("서버에 이상이 있습니다. 로그인 상태를 확인하고 다시 접속해주세요")
+            chatClient.send('/pub/exitRoom',{},JSON.stringify({roomId, userId}))
+            chatClient.disconnect();
         }
         chatClient.send('/pub/sendMessage',{},JSON.stringify({roomId, userId, myMessage}));
-        console.log(myMessage);
+        setMyMessage("");
     }
-    
-    const enter = (event) => {
-        if (event.key === 'Enter') {
-            sendMessage();
+
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
-    };
+    }, [yourMessage]);
 
     //방 나가기
     function exitRoom(){
@@ -123,22 +142,13 @@ function OnChatting(){
             chatClient.send('/pub/exitRoom',{},JSON.stringify({roomId, userId}))
             chatClient.disconnect();
             navigate(`/chatting`);
-            window.location.reload();
-            console.log("나가기");
+        }
+        else{
+            alert("서버에 문제가 있습니다. 창을 닫고 다시 시도 해주세요")
+            chatClient.send('/pub/exitRoom', {}, JSON.stringify({ roomId, userId }));
+            chatClient.disconnect();
         }
     }
-
-    //채팅상태
-    function renderChatState(state){
-        switch(state){
-            case 1:
-                return <div className="joinStateBox">친구 대기 중</div>;
-            case 2:
-                return <div className="exitStateBox">친구 접속! 대화를 시작해보세요!</div>
-        }
-    }
-    
-    
 
     return(
         <div style={{ 
@@ -155,13 +165,24 @@ function OnChatting(){
                 <div className="stateBox"></div>
                 <button className="exitButton" onClick={exitRoom}>나가기</button>
             </div>
-            <div className="chatContainer">
-                <div className="chatStateBox">
-                    {renderChatState(chatState)}
-                </div>
-                <div className="chatBox">
-                    {}
-                </div>
+            <div className="chatContainer" ref={chatContainerRef}>
+                {yourMessage.map((chat,index)=>(
+                    chat.userId===userId?(
+                        chat.chatTitle!==null?(
+                        <MyChat
+                            key={index}
+                            msg={chat.myMessage}
+                        />
+                        ):(<></>)
+                    ):(
+                        chat.chatTitle!==null?(
+                        <YourChat
+                        key={index}
+                        msg={chat.myMessage}
+                        />
+                        ):(<></>)
+                    )
+                ))}
             </div>
             <div className="sendContainer">
                 <div className="messageBox">
@@ -169,7 +190,6 @@ function OnChatting(){
                         className="messageInput" 
                         value={myMessage}
                         onChange = {(e) => setMyMessage(e.target.value)}
-                        onKeyDown = {enter}
                         placeholder = '메시지를 입력하세요.'
                     />
                 </div>

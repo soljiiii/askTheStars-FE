@@ -156,11 +156,15 @@
     background-color: rgb(75, 75, 75);
 }
 .chatContainer{
-    height: 420px;
-    width: 498px;
+    height: 380px;
+    width: 478px;
     border-top: 1px solid white;
     overflow-y: scroll;
     background-color: rgb(39, 39, 39);
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
 }
 .sendContainer{
     height: 95px;
@@ -207,4 +211,54 @@
 
 .chatContainer::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/*나의 말풍선*/
+.myChatContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+.myChatBox{
+    max-width: 250px;
+    min-height: 30px;
+    border: 1px solid white;
+    background-color: #b7b3b3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    word-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    word-break: break-word; /* 단어가 긴 경우에도 줄바꿈 */
+    overflow-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    margin-top: 15px;
+    font-size: 14px;
+}
+.yourChatContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.yourChatBox{
+    max-width: 250px;
+    min-height: 30px;
+    border: 1px solid rgb(126, 125, 125);
+    background-color: #5d5d5d;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    word-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    word-break: break-word; /* 단어가 긴 경우에도 줄바꿈 */
+    overflow-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    margin-top: 15px;
+    font-size: 14px;
 }

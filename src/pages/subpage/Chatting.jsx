@@ -22,10 +22,9 @@ function Chatting() {
     useEffect(()=>{
         axios.get(`http://localhost:80/getChatList`)
         .then(response=>{
-            console.log(response.data);
             setChatList(response.data);
         })
-    },[])
+    },[chatList])
 
     return ReactDOM.createPortal(
         <div style={{ 

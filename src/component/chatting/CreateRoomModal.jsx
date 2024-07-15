@@ -14,6 +14,7 @@ function CreateRoomModal({ isOpen, onClose }) {
     const [chatClient, setChatClient] = useState(null);
     const [accessToken, setAccessToken] = useState(null);
     const [userId, setUserId] = useState("");
+    const [roomNmExist, setRoomNmExist] = useState("");
 
     // input 값 onChange 및 저장
     function handleRoomNameOnChange(e) {
@@ -56,33 +57,36 @@ function CreateRoomModal({ isOpen, onClose }) {
     function createRoomSubmit() {
         const data = { chatTitle: roomName };
         console.log(data);
-
+        
         if (roomName !== "") {
-            axios.post(`http://localhost:80/createChat`, data,{
-                headers:{
-                    Authorization: `Bearer ${accessToken}`
-                },
-                withCredential:true
-            })
-                .then(response => {
-                    const roomId = response.data;
-                    console.log(roomId);
-                    if (typeof roomId === 'number') {
-                        setRoomId(roomId);
-                        console.log("Room ID:", roomId);
-                        navigate(`../onchatting/${roomId}`);
-                    } else {
-                        alert("이미 존재하는 이름입니다. 새로 작성해주세요.");
-                    }
+                axios.post(`http://localhost:80/createChat`, data,{
+                    headers:{
+                        Authorization: `Bearer ${accessToken}`
+                    },
+                    withCredential:true
                 })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("방 생성에 실패했습니다.");
-                });
+                    .then(response => {
+                        const roomId = response.data;
+                        console.log(roomId);
+                        if (typeof roomId === 'number') {
+                            setRoomId(roomId);
+                            console.log("Room ID:", roomId);
+                            navigate(`../onchatting/${roomId}`);
+                        }
+                        else {
+                            console.error("Received roomId is not a number:", roomId);
+                            alertr(response.data);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("방 생성에 실패했습니다.");
+                    });
         } else {
             alert("방 이름을 입력해주세요.");
         }
     }
+
     return (
         <>
             {isOpen && (

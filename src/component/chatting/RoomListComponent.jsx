@@ -11,9 +11,6 @@ function RoomListComponent({chat}){
     const [accessToken, setAccessToken] = useState(null);
     const [userId, setUserId] = useState("");
 
-
-    console.log(chat.chatNo);
-
     //쿠키 가져오기
     useEffect(()=>{
         const cookieValue = getCookie("accessToken");
@@ -42,7 +39,6 @@ function RoomListComponent({chat}){
         axios.get(`http://localhost:80/getUserCnt/${chat.chatNo}`)
         .then(response=>{
             setUserCnt(response.data);
-            console.log(response.data);
         })
     },[userCnt])
 
@@ -60,7 +56,7 @@ function RoomListComponent({chat}){
         <>
             <div className="RoomListContainer">
                 <div className="roomName">{chat.chatTitle}</div>
-                {chat.chatState===1?(
+                {userCnt===1?(
                     <div className="roomState">
                         <div>대기중</div>
                         <div>🟢</div>
