@@ -208,3 +208,29 @@
     border: 1px solid white;
     cursor: pointer;
 }
+
+/*회원정보수정*/
+.memberModifyPw{
+    margin-top: 80px;
+}
+.newPwInput{
+    width: 230px;
+    height: 30px;
+    border-radius: 20px;
+    border: 2px solid white;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    margin-left: 70px;
+    background-color: #323232;
+    color: white;
+}
+.newPwConfirmInput{
+    width: 230px;
+    height: 30px;
+    border-radius: 20px;
+    border: 2px solid white;
+    padding-left: 20px;
+    margin-left: 70px;
+    background-color: #323232;
+    color: white;
+}

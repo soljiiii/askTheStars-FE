@@ -1,13 +1,12 @@
 import "../../styles/Common.css"
 
-function JoinInput({menu, onChange, value}){
-
-    function handleOnChange(event){
+function JoinInput({ menu, onChange, value, readonly }) {
+    function handleOnChange(event) {
         const newValue = event.target.value;
         onChange(newValue);
     }
 
-    return(
+    return (
         <>
             <div className="joinInput">
                 <span className="joinMenu">
@@ -16,10 +15,11 @@ function JoinInput({menu, onChange, value}){
                 <input 
                     className="inputBox"
                     onChange={handleOnChange}  
-                    value={value}  
+                    value={value || ''} 
+                    readOnly={readonly}
                 />
             </div>
         </>
     );
 }
-export default JoinInput
+export default JoinInput;

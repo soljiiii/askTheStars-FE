@@ -322,7 +322,7 @@ ul.pagination li a.active {
     height: 150px;
     display: flex;
 }
-.likeButton{
+.likeButtonNone{
     width: 80px;
     height: 80px;
     font-size: 50px;
@@ -330,9 +330,23 @@ ul.pagination li a.active {
     background-color: black;
     margin: 20px auto 0px 360px;
 }
-.likeButton:hover{
+.likeButtonYes{
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+    border: none;
+    border-radius: 100px;
+    background-color: rgb(48, 47, 48);
+    margin: 20px auto 0px 360px;
+}
+.likeButtonNone:hover{
     cursor: pointer;
     background-color: #545353;
+    border-radius: 100px;
+}
+.likeButtonYes:hover{
+    cursor: pointer;
+    background-color: black;
     border-radius: 100px;
 }
 .likeCnt{

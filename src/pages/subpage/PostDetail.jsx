@@ -1,11 +1,11 @@
 import Header from "../../layouts/Header"
-import ReplyComponent from "../../component/community/ReplyComponent"
 import "../../styles/Community.css"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { formatDate } from "../../util/util";
 import axios from "axios"
 import { getCookie } from "../../util/util"
+import RepComponent from "../../component/community/RepComponent";
 
 function PostDetail(){
 
@@ -16,6 +16,7 @@ function PostDetail(){
     const [accessToken, setAccessToken] =useState(null);
     const [userId, setUserId] = useState("");
     const navigate = useNavigate();
+    const [likeState, setLikeState] = useState(0);
 
     //쿠키 가져오기
     useEffect(()=>{
@@ -115,6 +116,52 @@ function PostDetail(){
         })
     }
 
+    //좋아요 상태 가져오기
+    useEffect(()=>{
+        if(accessToken!==null){
+            axios.get(`http://localhost:80/getLikeState`,{
+                params:{postNo:postNo},
+                headers:{
+                    Authorization: `Bearer ${accessToken}`
+                },
+                withCredential:true
+            })
+            .then(response=>{
+                setLikeState(response.data);
+            })
+        }
+    },[accessToken])
+
+    //좋아요 누르기
+    function handleLikeButton(){
+        if(accessToken===null){
+            alert("로그인 후 이용해주세요!");
+        }
+        else{
+            const data={
+                memberId: userId,
+                postNo: postNo
+            }
+            axios.post(`http://localhost:80/postLike`,data)
+            .then(response=>{
+                window.location.reload();
+            })
+        }
+    }
+
+    //좋아요 취소
+    function handleLikeDelete(){
+        const data={
+            memberId: userId,
+            postNo: postNo
+        }
+        axios.post(`http://localhost:80/deleteLike`,data)
+        .then(response=>{
+            window.location.reload();
+        })
+    }
+
+
     if(detail.memberId===userId){
         return(
             <>
@@ -134,10 +181,17 @@ function PostDetail(){
                                 {detail.postContent}
                             </div>
                             <div className="likeButtonBox">
-                                <div className="likeStubBox">
-                                    <button className="likeButton">👍</button>
+                                {likeState===0?(
+                                    <div className="likeStubBox">
+                                    <button className="likeButtonNone" onClick={handleLikeButton}>👍</button>
                                     <span className="likeCnt">Liked : {detail.likedCnt}</span>
                                 </div>
+                                ):(
+                                    <div className="likeStubBox">
+                                    <button className="likeButtonYes" onClick={handleLikeDelete}>👍</button>
+                                    <span className="likeCnt">Liked : {detail.likedCnt}</span>
+                                </div>
+                                )}
                                 <div className="postStubBox">
                                     <button className="postModifyButton" onClick={handleModifyPost}>글수정</button>
                                     <button className="postDeleteButton" onClick={handleDeletePost}>글삭제</button>
@@ -155,7 +209,7 @@ function PostDetail(){
                         </div>
                         <div className="replyBox">
                             {replyList.map((reply,index)=>(
-                                <ReplyComponent
+                                <RepComponent
                                     key={index}
                                     replyList={reply}
                                     userId={userId}
@@ -186,10 +240,18 @@ function PostDetail(){
                                 {detail.postContent}
                             </div>
                             <div className="likeButtonBox">
-                                <div className="likeStubBox">
-                                    <button className="likeButton">👍</button>
+                                {likeState===0?(
+                                    <div className="likeStubBox">
+                                    <button className="likeButtonNone" onClick={handleLikeButton}>👍</button>
                                     <span className="likeCnt">Liked : {detail.likedCnt}</span>
                                 </div>
+                                ):(
+                                    <div className="likeStubBox">
+                                    <button className="likeButtonYes" onClick={handleLikeDelete}>👍</button>
+                                    <span className="likeCnt">Liked : {detail.likedCnt}</span>
+                                </div>
+                                )}
+
                                 <div className="postStubBox">
                                 
                                 </div>
@@ -206,7 +268,7 @@ function PostDetail(){
                         </div>
                         <div className="replyBox">
                             {replyList.map((reply,index)=>(
-                                <ReplyComponent
+                                <RepComponent
                                     key={index}
                                     replyList={reply}
                                     userId={userId}

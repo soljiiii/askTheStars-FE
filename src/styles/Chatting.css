@@ -1,0 +1,264 @@
+/* 채팅 목록 */
+.chattingContainer {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    width: 500px !important;
+    height: 600px !important;
+    overflow-y: auto !important;
+}
+.chattingBox{
+    width: 500px;
+}
+.buttonBox{
+    width: 498px;
+    height: 90px;
+}
+.createRoomButton{
+    width: 80px;
+    height: 50px;
+    margin: 15px auto auto 400px;
+    border-radius: 20px;
+    border:none;
+    background-color: rgb(249, 238, 223);
+    font-weight: 600;
+}
+.createRoomButton:hover{
+    cursor: pointer;
+    background-color:  rgb(180, 172, 161);
+}
+.roomList{
+    width: 498px;
+    min-height: 63px;
+    margin: 0px 0px 50px 0px;
+}
+
+/*채팅리스트 컴포넌트*/
+.RoomListContainer{
+    width: 360px;
+    height: 50px;
+    display: flex;
+    margin : 10px 50px 0px 50px;
+    border: 1px solid white;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+}
+.roomName{
+    width: 260px;
+}
+.roomState{
+    width: 50px;
+    font-size: 12px;
+    display: block;
+    text-align: center;
+}
+.roomJoinButtonBox{
+    width: 70px;
+}
+.roomJoinButton{
+    width: 50px;
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: none;
+    background-color:  rgb(249, 238, 223);
+}
+.roomJoinButton:hover{
+    cursor: pointer;
+    background-color:  rgb(180, 172, 161);
+}
+
+/*방만들기 모달창*/
+.modalContainer{
+    width: 300px;
+    height: 200px;
+    border: 3px solid rgb(182, 140, 220);
+    border-radius: 15px;
+    margin: 100px auto auto 340px;
+    background-color: rgba(99, 75, 121, 0.871);
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.closeBox{
+    width: 300px;
+    height: 50px;
+}
+.closeButton{
+    border:none;
+    border-radius: 20px;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(131, 99, 158);
+    margin: 15px auto auto 260px;
+}
+.closeButton:hover{
+    cursor: pointer;
+    background-color: rgb(185, 185, 185);
+}
+.roomNameInputBox{
+    width: 300px;
+    height: 80px;
+}
+.roomNameInput{
+    width: 160px;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(249, 238, 223);
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 15px 50px auto 50px;
+}
+.finalCreateRoomButtonBox{
+    width: 300px;
+    height: 70px;
+}
+.finalCreateRoomButton{
+    width: 100px;
+    height: 30px;
+    border-radius: 200px;
+    border: none;
+    font-weight: 500;
+    margin: 10px 100px auto 100px;
+    background-color: rgb(249, 238, 223);
+}
+.finalCreateRoomButton:hover{
+    cursor: pointer;
+    background-color:  rgb(180, 172, 161);
+}
+
+/*채팅방*/
+.exitButtonBox{
+    height: 80px;
+    width: 498px;
+    border: none;
+}
+.exitButton{
+    width: 100px;
+    height: 40px;
+    margin: 20px auto auto 380px;
+    border-radius: 20px;
+    font-size: 16px;
+    border: none;
+    background-color: rgb(136, 135, 135);
+    font-weight: 500;
+}
+.exitButton:hover{
+    cursor: pointer;
+    background-color: rgb(75, 75, 75);
+}
+.chatContainer{
+    height: 380px;
+    width: 478px;
+    border-top: 1px solid white;
+    overflow-y: scroll;
+    background-color: rgb(39, 39, 39);
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+.sendContainer{
+    height: 95px;
+    width: 498px;
+    border: none;
+    display: flex;
+}
+.messageInput{
+    resize:none;
+    width: 360px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 15px auto auto 8px;
+    padding: 20px;
+}
+.sendButton{
+    width: 70px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 45px auto auto 10px;
+    background-color: rgb(174, 174, 174);
+    border: none;
+    font-weight: 500;
+}
+.sendButton:hover{
+    background-color: rgb(150, 150, 150);
+    cursor: pointer;
+}
+
+/* 웹킷 기반 브라우저용 */
+.chatContainer::-webkit-scrollbar {
+    width: 15px;
+}
+
+.chatContainer::-webkit-scrollbar-track {
+    background: #9c9c9c;
+}
+
+.chatContainer::-webkit-scrollbar-thumb {
+    background-color: #847171;
+    border-radius: 10px;
+    border: 3px solid #444;
+}
+
+.chatContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/*나의 말풍선*/
+.myChatContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+.myChatBox{
+    max-width: 250px;
+    min-height: 30px;
+    border: 1px solid white;
+    background-color: #b7b3b3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    word-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    word-break: break-word; /* 단어가 긴 경우에도 줄바꿈 */
+    overflow-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    margin-top: 15px;
+    font-size: 14px;
+}
+.yourChatContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.yourChatBox{
+    max-width: 250px;
+    min-height: 30px;
+    border: 1px solid rgb(126, 125, 125);
+    background-color: #5d5d5d;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    word-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    word-break: break-word; /* 단어가 긴 경우에도 줄바꿈 */
+    overflow-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    margin-top: 15px;
+    font-size: 14px;
+}

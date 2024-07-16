@@ -3,9 +3,9 @@ import { formatDate } from "../../util/util";
 import { getCookie } from "../../util/util";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import PostDetail from "../../pages/subpage/PostDetail";
+import React from 'react';
 
-function replyComponent({replyList, userId}){
+function RepComponent({replyList, userId}){
 
     const [accessToken, setAccessToken] =useState(null);
     const [replyModify, setReplyModify] = useState(0);
@@ -132,4 +132,4 @@ function replyComponent({replyList, userId}){
         );
     }
 }
-export default replyComponent;
+export default RepComponent;
