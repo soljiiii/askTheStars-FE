@@ -40,7 +40,7 @@ function RoomListComponent({chat}){
         .then(response=>{
             setUserCnt(response.data);
         })
-    },[userCnt])
+    },[userCnt,chat])
 
     //join
     function joinChatiing(){

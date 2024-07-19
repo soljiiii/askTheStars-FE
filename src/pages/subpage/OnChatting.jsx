@@ -55,6 +55,7 @@ function OnChatting(){
         })
     },[])
 
+    //웹소켓 연결
     useEffect(()=>{
         if(!chatClient && roomId && userId){
             //서버연결
@@ -75,7 +76,6 @@ function OnChatting(){
                 stomp.subscribe('/sub/'+roomId,(message=>{
                     const receive = JSON.parse(message.body);
                     //받은 메세지 처리
-                    // setYourMessage(preMessage=>[...preMessage, receive])
                     console.log(receive);
                     setYourMessage(prevMessage => [...prevMessage, receive]);
                 }))
@@ -107,7 +107,7 @@ function OnChatting(){
                 console.log("WebSocket 연결 종료");
             }
             const confirmationMessage = '정말로 이 페이지를 떠나시겠습니까?';
-            event.returnValue = confirmationMessage; // 표준에 따라 필요
+            event.returnValue = confirmationMessage;
             return confirmationMessage;
         };
 
